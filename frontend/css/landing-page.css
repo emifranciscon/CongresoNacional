@@ -9,7 +9,9 @@ html {
     width: 100%;
     height: 100%;
 }
-
+img{
+    width: 100%;
+}
 body,
 h1,
 h2,
@@ -19,6 +21,10 @@ h5,
 h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
+}
+p{
+    font-size: 15px;
+    text-align: justify;
 }
 
 .topnav {
@@ -95,12 +101,15 @@ h6 {
 .content-section-a {
     padding: 50px 0;
     background-color: #f8f8f8;
+    background-image: -webkit-gradient(linear, 0 top, 0 bottom, from(#FFFFFF), to(#A9A9A9));
+
 }
 
 .content-section-b {
     padding: 50px 0;
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
+    background-image: -webkit-gradient(linear, 0 top, 0 bottom, from(#A9A9A9), to(#FFFFFF));
 }
 
 .section-heading {
@@ -109,7 +118,8 @@ h6 {
 
 .section-heading-spacer {
     float: left;
-    width: 200px;
+    width: 70%;
+    margin-left: 20%;
     border-top: 3px solid #e7e7e7;
 }
 
