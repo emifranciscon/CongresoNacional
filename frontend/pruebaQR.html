@@ -1,0 +1,16 @@
+<body>
+<div data-role="content">
+<form>
+<div class="">
+	<label>Documento: </label><input type="text" name="documento" id="documento"><br>
+</div>
+<input type="button" value="Generar" onclick="generate_qr()">
+<div id="qr"></div>
+<input type="hidden" id="qrCode" name="qrCode" >
+<div id="success"></div>
+<div id="error"></div>
+</form>
+</div>
+</body>
+<script src="http://waylaturismo.tur.ar/js/jquery.js"></script>
+<script type="text/javascript" src="./codigoQR/qrcode.js"></script>
