@@ -1641,7 +1641,7 @@ var draw_qrcode = function(text, typeNumber, errorCorrectLevel) {
 
 var create_qrcode = function(text, typeNumber, errorCorrectLevel, table) {
 
-	var qr = qrcode(typeNumber || 6, errorCorrectLevel || 'M');
+	var qr = qrcode(typeNumber || 10, errorCorrectLevel || 'L');
 	qr.addData(text);
 	qr.make();
 
@@ -1651,8 +1651,14 @@ var create_qrcode = function(text, typeNumber, errorCorrectLevel, table) {
 
 var generate_qr = function(){
 	var circulista = new Object();
-	circulista.documento = document.getElementById('documento').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');;
-	document.getElementById('qr').innerHTML = create_qrcode(JSON.stringify(circulista));
+	circulista.documento = '-'+document.getElementById('documento').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');+'-';
+	circulista.nombre = '-'+document.getElementById('nombre').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');+'-';
+	circulista.apellido = '-'+document.getElementById('apellido').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');+'-';
+	circulista.telefonoEmergencia = '-'+document.getElementById('telefonoEmergencia').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');+'-';
+	circulista.eslabon = '-'+document.getElementById('eslabon').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');+'-';
+	circulista.diocesis = '-'+document.getElementById('diocesis').value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '');+'-';
+	document.getElementById('body').innerHTML = create_qrcode(JSON.stringify(circulista));
+	$('#ventanaError').modal('show')
 }
 
 
