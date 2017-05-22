@@ -1,0 +1,34 @@
+docker-compose run web django-admin.py startproject api /webserver
+
+
+
+---POST NEW PERSON
+
+curl -v -X POST --header "Content-Type:application/json" "http://0.0.0.0:8000/person/" -d '{
+  "name": "Emiliano",
+  "surname": "Martin",
+  "doc_number": 36372524,
+  "email_personal": "emimartin26@hotmail.com",
+  "emergency_tel_number": "3535694003",
+  "personal_tel_number": "3535087814",
+  "date_birth": "2017-10-26",
+  "waist": "M",
+  "diet_description": "Ninguna Dieta",
+  "diocesis": "Villa Maria",
+  "eslabon_number": 27,
+  "date_eslabon": "2017-05-09",
+  "email_contact": "sebamartin26@hotmail.com"
+}'
+
+---GET ALL PERSON
+
+curl -v -X GET --header "Content-Type:application/json" "http://0.0.0.0:8000/person/"
+
+---GET BY ID PERSON
+
+curl -v -X GET --header "Content-Type:application/json" "http://0.0.0.0:8000/person/1"
+
+
+---DELETE PERSON
+
+curl -v -X DELETE --header "Content-Type:application/json" "http://0.0.0.0:8000/person/1"
