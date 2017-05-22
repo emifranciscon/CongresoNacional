@@ -59,7 +59,7 @@
 	     <!-- /.nav -->
 		<div class="panel panel-primary" id="ventana1"style="margin-top:10px;margin-left:30px;width:95%;">
 			<div class="panel-body">
-				<form id="formVentana1">
+				<form>
 					<div class="row">
 				        <div class="col-md-6" style="margin-top:20px;">
 				        	<div class="input-group" >
@@ -72,7 +72,7 @@
 							</div>
 							<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:178px;">Mail:</span>
-							    <input style="max-width:300px;" type="text" class="form-control"  name="email" tabindex="5" id="mail" aria-describedby="inputGroupSuccess1Status" required>
+							    <input style="max-width:300px;" type="text" class="form-control" tabindex="5" id="mail" aria-describedby="inputGroupSuccess1Status" required>
 							</div>
 							<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:178px;">Documento:</span>
@@ -102,8 +102,12 @@
 				        </div>
 				    </div>
 					<center>
-						<input  style="margin-top:30px;" type="submit" class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(1)">
+						<input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(1)">
 					</center>	
+					
+					<input type="hidden" id="qrCode" name="qrCode" >
+					<div id="success"></div>
+					<div id="error"></div>
 				</form>
 			</div>
 		</div>
@@ -198,11 +202,10 @@
 
 </body>
 <script type="text/javascript">
-	var primeraVez=true
+
 	function mostrarVentana(numPestaña){
 		switch(numPestaña) {
 			    case 1:
-			    	$("#formVentana1").validate();  
 					document.getElementById('ventana1').style.display = 'none';
 					document.getElementById('ventana2').style.display = 'block';
 					document.getElementById('ventana3').style.display = 'none';
@@ -242,8 +245,6 @@
 				break;
 		}
 	}
-
-
 	
 </script>
 <script type="text/javascript" src="./codigoQR/qrcode.js"></script>
