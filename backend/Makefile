@@ -14,10 +14,13 @@ build:
 	docker-compose build
 	docker volume create db_data
 
+
+rebuild_web:
+	docker-compose stop
+	docker-compose rm -f web 
+	docker-compose build
+
 init_db:
 	docker-compose run web python manage.py makemigrations
 	docker-compose run web python manage.py migrate
 	docker-compose run web python manage.py createsuperuser
-
-
- 
