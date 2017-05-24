@@ -47,19 +47,19 @@
 	    </nav>
 	    <ul class="nav nav-tabs" style="margin-top:90px;">
 			<li>
-				<a class="btn btn-primary" id="btn-datosPers">Datos Personales</a>
+				<a class="btn btn-primary" id="btn-datosPers" onclick="mostrarVentana(1)">Datos Personales</a>
 			</li>
 			<li>
-				<a  class="btn btn-info" id="btn-datosMov">Datos del Movimiento</a>
+				<a  class="btn btn-info" id="btn-datosMov" onclick="mostrarVentana(2)">Datos del Movimiento</a>
 			</li>
 			<li>
-				<a  class="btn btn-info" id="btn-datosMed">Ficha Medica</a>
+				<a  class="btn btn-info" id="btn-datosMed"onclick="mostrarVentana(3)">Ficha Medica</a>
 			</li>
 		</ul>
 	     <!-- /.nav -->
 		<div class="panel panel-primary" id="ventana1"style="margin-top:10px;margin-left:30px;width:95%;">
 			<div class="panel-body">
-				<form>
+				<form id="datosPersonales">
 					<div class="row">
 				        <div class="col-md-6" style="margin-top:20px;">
 				        	<div class="input-group" >
@@ -75,11 +75,17 @@
 							    <input style="max-width:300px;" type="text" class="form-control" tabindex="5" id="mail" aria-describedby="inputGroupSuccess1Status" required>
 							</div>
 							<div class="input-group" style="margin-top:20px;">
+							    <span class="input-group-addon" style="min-width:178px;">Mail de Emergencia:</span>
+							    <input style="max-width:300px;" type="text" class="form-control" tabindex="5" id="mail" aria-describedby="inputGroupSuccess1Status" required>
+							</div>
+							<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:178px;">Documento:</span>
 							    <input  style="max-width:300px;"type="text" class="form-control" tabindex="7" id="documento" aria-describedby="inputGroupSuccess1Status" required>
 							</div>
-							
-							
+							<div class="input-group" style="margin-top:20px;">
+							    <span class="input-group-addon" style="min-width:178px;">Fecha Nacimiento:</span>
+							    <input type="date"  name="fecha" style="max-width:300px;" class="form-control" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+							</div>
 				        </div>
 				        <div class="col-md-6" style="margin-top:20px;">
 				        	<div class="input-group">
@@ -92,9 +98,37 @@
 							</div>
 							<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:220px;">Talle Remera:</span>
-							    <input  style="max-width:300px;"type="text" class="form-control" tabindex="6" id="talle" aria-describedby="inputGroupSuccess1Status" required>
+							    <select class="form-control" style="max-width:300px;" >
+							      <option value="selecione">seleccione</option>
+								  <option value="S">S</option>
+								  <option value="M">M</option>
+								  <option value="L">L</option>
+								  <option value="XL">XL</option>
+								  <option value="XXL">XXL</option>
+								</select>
 							</div>
-							
+							<div class="row">
+								<div class="col-md-2" style="margin-top:20px;">
+									<img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+									<center>S</center>
+								</div>
+								<div class="col-md-2" style="margin-top:20px;">
+									<img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+									<center>M</center>
+								</div>
+								<div class="col-md-2" style="margin-top:20px;">
+									<img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+									<center>L</center>
+								</div>
+								<div class="col-md-2" style="margin-top:20px;">
+									<img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+									<center>XL</center>
+								</div>
+								<div class="col-md-2" style="margin-top:20px;">
+									<img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+									<center>XXL</center>
+								</div>
+							</div>
 							<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:220px;">¿Tiene alguna dieta Especial?</span>
 							    <input style="max-width:300px;" type="text" class="form-control" id="dieta" tabindex="8"aria-describedby="inputGroupSuccess1Status" >
@@ -102,12 +136,8 @@
 				        </div>
 				    </div>
 					<center>
-						<input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(1)">
+						<input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(2)">
 					</center>	
-					
-					<input type="hidden" id="qrCode" name="qrCode" >
-					<div id="success"></div>
-					<div id="error"></div>
 				</form>
 			</div>
 		</div>
@@ -130,7 +160,12 @@
 				        <div class="col-md-6" style="margin-top:20px;">
 				        	<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:220px;">Encargado de su diocesis:</span>
-							    <input style="max-width:300px;" type="text" class="form-control" tabindex="2" id="diocesis" aria-describedby="inputGroupSuccess1Status" required>
+							    <select class="form-control" style="max-width:300px;" >
+								  <option value="seleccione">Seleccione</option>
+								  <option value="Juan">Juan</option>
+								  <option value="pepe">Pepe</option>
+								  <option value="pedro">Pedro</option>
+								</select>
 							</div>
 							<div class="input-group" style="margin-top:20px;">
 							    <span class="input-group-addon" style="min-width:220px;">Año que hizo el Eslabón:</span>
@@ -140,12 +175,8 @@
 				    </div>
 					<center>
 						<input  style="margin-top:30px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(1)">
-						<input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(2)">
+						<input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(3)">
 					</center>	
-					
-					<input type="hidden" id="qrCode" name="qrCode" >
-					<div id="success"></div>
-					<div id="error"></div>
 				</form>
 			</div>
 		</div>
@@ -167,10 +198,6 @@
 						<input  style="margin-top:30px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(2)">
 						<input  style="margin-top:30px;"  class="btn btn-primary" value="Registrarse" onclick="generate_qr()">
 					</center>	
-					
-					<input type="hidden" id="qrCode" name="qrCode" >
-					<div id="success"></div>
-					<div id="error"></div>
 				</form>
 			</div>
 		</div>
@@ -205,7 +232,15 @@
 
 	function mostrarVentana(numPestaña){
 		switch(numPestaña) {
-			    case 1:
+				case 1:
+					document.getElementById('ventana1').style.display = 'block';
+					document.getElementById('ventana2').style.display = 'none';
+					document.getElementById('ventana3').style.display = 'none';
+					document.getElementById('btn-datosPers').setAttribute("class", "btn-primary");					
+					document.getElementById('btn-datosMov').setAttribute("class", "btn-info");
+					document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
+				break;
+			    case 2:
 					document.getElementById('ventana1').style.display = 'none';
 					document.getElementById('ventana2').style.display = 'block';
 					document.getElementById('ventana3').style.display = 'none';
@@ -213,7 +248,7 @@
 					document.getElementById('btn-datosMov').setAttribute("class", "btn-primary");
 					document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
 				break;
-				case 2:
+				case 3:
 					document.getElementById('ventana1').style.display = 'none';
 					document.getElementById('ventana2').style.display = 'none';
 					document.getElementById('ventana3').style.display = 'block';
@@ -246,10 +281,12 @@
 		}
 	}
 	
+	
 </script>
 <script type="text/javascript" src="./codigoQR/qrcode.js"></script>
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
