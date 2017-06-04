@@ -15,14 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import patterns, url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from person.views import PersonViewSet
+from person.views import FichaMedicaViewSet
 
 
 router = DefaultRouter()
 router.register(r'person', PersonViewSet)
+router.register(r'medical', FichaMedicaViewSet)
 
 urlpatterns = [
+    url(r'^$', 'frontend.views.home', name='home'),
+    url(r'^inscripcion/', 'frontend.views.inscripcion', name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^',include(router.urls)),
+    url(r'^api/',include(router.urls)),
+    url(r'^api/diocesis', 'person.views.lista_diocesis'),
 ]

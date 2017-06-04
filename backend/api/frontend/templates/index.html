@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a name="about"></a>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="https://fotos.subefotos.com/df4db4992242fa2f18be6894cc455bb3o.jpg" alt="...">
+              <div class="carousel-caption">
+                <div class="row">
+                    <div class="col-md-6" style="text-aling: center;">
+                        <h3 style="margin-right: 100px;" >ENCUENTRO NACIONAL X</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 style="margin-left: 100px;">ASAMBLE NACIONAL XXIX</h3>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img src="https://fotos.subefotos.com/90cc81a2f13dc9300343a17d2ef84c8fo.jpg" alt="...">
+              <div class="carousel-caption">
+                    <h1>Encuentro Nacional MCJ Villa María</h1>
+                    <hr class="intro-divider">
+                    <ul class="list-inline intro-social-buttons">
+                        <li>
+                            <a href="https://www.facebook.com/mcjvillamaria" class="btn btn-default btn-lg"><i class="fa fa-facebook"></i> <span class="network-name">Fanpage</span></a>
+                        </li>
+                    </ul>
+                    <h3>"No podemos callar lo que hemos vísto y oído"</h3>
+              </div>
+            </div>
+            <div class="item">
+              <img src="https://fotos.subefotos.com/ea8615b0fdd8706badcecce39a5876c6o.jpg" alt="...">
+              <div class="carousel-caption" style="margin-bottom: 130px;">
+                  <h1>ASAMBLEA NACIONAL XXIX</h1>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+        <!-- Carousel -->
+    </div>
+<a  name="services"></a>
+  <hr class="section-heading-spacer">
+  <div class="content-section-b">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                  <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                      <h3 class="list-group-item-heading">MCJ VILLA MARIA</h3>
+                    </a>
+                    <a href="#" class="list-group-item">
+                      <p class="list-group-item-text">El MCJ llega a nuestra diócesis por intermedio de un grupo de cursillistas de la ciudad de Río Tercero que viajan acompañados por el padre Fabián Gilli a vivir la experiencia del Eslabón a Dean Funes. Hoy, en medio de nuestro peregrinar, nuestro Cristo Amigo no pone en el camino el más hermoso de los proyectos: Invitar y acoger a todos nuestros hermanos circulistas de todo el país para que vengan a compartir con nosotros esto que día a día vivimos y sentimos, porque hemos sido testigos y hemos experimentado la misericordia y el Amor de nuestro Dios. Queremos abrir nuestros brazos y nuestros corazones para recibirlos. Los estaremos esperando junto a nuestra Madre Inmaculada que desde aquí los llama a peregrinar todos juntos para que de nuestro encuentro surja con supremo fervor y devoción el deseo de proclamar a nuestro Cristo Amigo.</p>
+                    </a>
+                  </div>
+              </div>
+              <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                  <iframe width="640" height="360" src="https://www.youtube.com/embed/LQPTqOY-3fM" frameborder="0" allowfullscreen></iframe>
+              </div>
+          </div>
+
+      </div>
+      <!-- /.container -->
+
+  </div>
+  <!-- /.content-section-b -->
+
+  <div class="content-section-a">
+
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-5 col-sm-6">
+                  <div class="list-group">
+                      <a href="#" class="list-group-item active">
+                          <h3 class="list-group-item-heading">Villa María - Datos Generales</h3>
+                      </a>
+                      <a href="#" class="list-group-item">
+                         <p class="lead">Villa María es una ciudad del centro de la provincia de Córdoba, Argentina, cabecera del departamento General San Martín. Es la tercera en importancia de la provincia, luego de la capital y la ciudad de Río Cuarto. La población de Villa María es de 79.351 habitantes. La tasa anual de crecimiento de la población de Villa María es de 1,2597 %.</p>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                  <img class="img-responsive" src="{% static "img/ipad.png" %}" alt="">
+              </div>
+          </div>
+
+      </div>
+      <!-- /.container -->
+
+  </div>
+    {% endblock %}

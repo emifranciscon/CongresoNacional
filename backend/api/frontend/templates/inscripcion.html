@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<ul class="nav nav-tabs" style="margin-top:90px;">
+<li>
+  <a class="btn btn-primary" id="btn-datosPers">Datos Personales</a>
+</li>
+<li>
+  <a  class="btn btn-info" id="btn-datosMov">Datos del Movimiento</a>
+</li>
+<li>
+  <a  class="btn btn-info" id="btn-datosMed">Ficha Medica</a>
+</li>
+</ul>
+ <!-- /.nav -->
+<div class="panel panel-primary" id="ventana1"style="margin-top:10px;margin-left:30px;width:95%;">
+<div class="panel-body">
+  <form>
+    <div class="row">
+          <div class="col-md-6" style="margin-top:20px;">
+            <div class="input-group" >
+            <span class="input-group-addon" style="min-width:178px;">Nombre:</span>
+            <input  style="max-width:300px;" type="text" class="form-control" id="nombre" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:178px;">Telefono Personal:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="telefonoPersonal" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:178px;">Mail:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="mail" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:178px;">Documento:</span>
+            <input  style="max-width:300px;"type="text" class="form-control" id="documento" aria-describedby="inputGroupSuccess1Status">
+        </div>
+
+
+          </div>
+          <div class="col-md-6" style="margin-top:20px;">
+            <div class="input-group">
+            <span class="input-group-addon" style="min-width:220px;">Apellido:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="apellido" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:220px;">Telefono de Emergencia:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="telefonoEmergencia" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:220px;">Talle Remera:</span>
+            <input  style="max-width:300px;"type="text" class="form-control" id="talle" aria-describedby="inputGroupSuccess1Status">
+        </div>
+
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:220px;">¿Tiene alguna dieta Especial?</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="dieta" aria-describedby="inputGroupSuccess1Status">
+        </div>
+          </div>
+      </div>
+    <center>
+      <input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(1)">
+    </center>
+
+    <input type="hidden" id="qrCode" name="qrCode" >
+    <div id="success"></div>
+    <div id="error"></div>
+  </form>
+</div>
+</div>
+<!-- panel -->
+<div class="panel panel-primary" id="ventana2"style="margin-top:10px;margin-left:30px;width:95%;display:none">
+<div class="panel-body">
+  <form>
+    <div class="row">
+          <div class="col-md-6" style="margin-top:20px;">
+            <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:178px;">Eslabon:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="eslabon" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:178px;">Diocesis:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="diocesis" aria-describedby="inputGroupSuccess1Status">
+        </div>
+
+          </div>
+          <div class="col-md-6" style="margin-top:20px;">
+            <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:220px;">Encargado de su diocesis:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="diocesis" aria-describedby="inputGroupSuccess1Status">
+        </div>
+        <div class="input-group" style="margin-top:20px;">
+            <span class="input-group-addon" style="min-width:220px;">Año que hizo el Eslabón:</span>
+            <input style="max-width:300px;" type="text" class="form-control" id="diocesis" aria-describedby="inputGroupSuccess1Status">
+        </div>
+          </div>
+      </div>
+    <center>
+      <input  style="margin-top:30px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(1)">
+      <input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(2)">
+    </center>
+
+    <input type="hidden" id="qrCode" name="qrCode" >
+    <div id="success"></div>
+    <div id="error"></div>
+  </form>
+</div>
+</div>
+<!-- panel -->
+<!-- panel -->
+<div class="panel panel-primary" id="ventana3"style="margin-top:10px;margin-left:30px;width:95%;display:none">
+<div class="panel-body">
+  <form>
+    <div class="row">
+          <div class="col-md-6" style="margin-top:20px;">
+
+
+          </div>
+          <div class="col-md-6" style="margin-top:20px;">
+
+          </div>
+      </div>
+    <center>
+      <input  style="margin-top:30px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(2)">
+      <input  style="margin-top:30px;"  class="btn btn-primary" value="Registrarse" onclick="generate_qr()">
+    </center>
+
+    <input type="hidden" id="qrCode" name="qrCode" >
+    <div id="success"></div>
+    <div id="error"></div>
+  </form>
+</div>
+</div>
+<!-- panel -->
+</div>
+
+<!-- modal -->
+<center>
+<div>
+<div  id="ventanaError" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+   <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title">Codigo QR Generado</h4>
+       </div>
+       <div class="modal-body" id="body">
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-success">Aceptar</button>
+       </div>
+    </div>
+   </div>
+</div>
+</div>
+</center>
+
+
+
+</body>
+<script type="text/javascript">
+
+function mostrarVentana(numPestaña){
+switch(numPestaña) {
+    case 1:
+    document.getElementById('ventana1').style.display = 'none';
+    document.getElementById('ventana2').style.display = 'block';
+    document.getElementById('ventana3').style.display = 'none';
+    document.getElementById('btn-datosPers').setAttribute("class", "btn-info");
+    document.getElementById('btn-datosMov').setAttribute("class", "btn-primary");
+    document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
+  break;
+  case 2:
+    document.getElementById('ventana1').style.display = 'none';
+    document.getElementById('ventana2').style.display = 'none';
+    document.getElementById('ventana3').style.display = 'block';
+    document.getElementById('btn-datosPers').setAttribute("class", "btn-info");
+    document.getElementById('btn-datosMov').setAttribute("class", "btn-info");
+    document.getElementById('btn-datosMed').setAttribute("class", "btn-primary");
+  break;
+
+}
+}
+
+function atrasVentana(numPestaña){
+switch(numPestaña) {
+  case 1:
+    document.getElementById('ventana1').style.display = 'block';
+    document.getElementById('ventana2').style.display = 'none';
+    document.getElementById('ventana2').style.display = 'none';
+    document.getElementById('btn-datosPers').setAttribute("class", "btn-primary");
+    document.getElementById('btn-datosMov').setAttribute("class", "btn-info");
+    document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
+  break;
+  case 2:
+    document.getElementById('ventana1').style.display = 'none';
+    document.getElementById('ventana2').style.display = 'block';
+    document.getElementById('ventana3').style.display = 'none';
+    document.getElementById('btn-datosPers').setAttribute("class", "btn-info");
+    document.getElementById('btn-datosMov').setAttribute("class", "btn-primary");
+    document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
+  break;
+}
+}
+
+</script>
+<script type="text/javascript" src="./codigoQR/qrcode.js"></script>
+    {% endblock %}

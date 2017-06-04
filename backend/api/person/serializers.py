@@ -1,9 +1,19 @@
 from rest_framework import serializers
-from person.models import PersonEntity
+from person.models import FichaMedicaEntity, DiocesisEntity, PersonEntity
 
 
 class PersonEntitySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = PersonEntity
 		fields = '__all__'
-		#fields = ('id', 'nombre', 'descripcion', 'tipo_plato','tipo_categoria','precio','foto')
+
+
+class FichaMedicaEntitySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = FichaMedicaEntity
+		fields = '__all__'
+
+class DiocesisEntitySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = DiocesisEntity
+		fields = '__all__'
