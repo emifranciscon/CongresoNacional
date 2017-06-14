@@ -2,168 +2,252 @@
 {% load static %}
 
 {% block head %}
-  <link href="{% static "js/qrcode.js" %}"  rel="stylesheet">
-  <link href="{% static "js/config-ajax.js" %}"  rel="stylesheet">
+  <link type="text/javascript" href="{% static "js/jquery.js" %}"  rel="stylesheet">
+  <link type="text/javascript" href="{% static "js/qrcode.js" %}"  rel="stylesheet">
+  <link type="text/javascript" href="{% static "js/config-ajax.js" %}"  rel="stylesheet">
+  <link type="text/javascript" href="{% static "js/lib/jquery-1.11.1.js" %}"  rel="stylesheet">
+  <link type="text/javascript" href="{% static "js/dist/jquery.validate.js" %}"  rel="stylesheet">
+
 
 {% endblock %}
 {% block content %}
 
+
 <ul class="nav nav-tabs" style="margin-top:90px;">
-<li>
-  <a class="btn btn-primary" id="btn-datosPers">Datos Personales</a>
-</li>
-<li>
-  <a  class="btn btn-info" id="btn-datosMov">Datos del Movimiento</a>
-</li>
-<li>
-  <a  class="btn btn-info" id="btn-datosMed">Ficha Medica</a>
-</li>
+  <li>
+    <a class="btn btn-primary" id="btn-datosPers">Datos Personales</a>
+  </li>
+  <li>
+    <a  class="btn btn-info" id="btn-datosMov">Datos del Movimiento</a>
+  </li>
+  <li>
+    <a  class="btn btn-info" id="btn-datosMed">Ficha Medica</a>
+  </li>
 </ul>
- <!-- /.nav -->
-<div class="panel panel-primary" id="ventana1"style="margin-top:10px;margin-left:30px;width:95%;">
-<div class="panel-body">
-  <form>
-    <div class="row">
-          <div class="col-md-6" style="margin-top:20px;">
-            <div class="input-group" >
-            <span class="input-group-addon" style="min-width:178px;">Nombre:</span>
-            <input  style="max-width:300px;" type="text" class="form-control" id="nombre" aria-describedby="inputGroupSuccess1Status">
-        </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:178px;">Telefono Personal:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="telefonoPersonal" aria-describedby="inputGroupSuccess1Status">
-        </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:178px;">Mail:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="mail" aria-describedby="inputGroupSuccess1Status">
-        </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:178px;">Documento:</span>
-            <input  style="max-width:300px;"type="text" class="form-control" id="documento" aria-describedby="inputGroupSuccess1Status">
-        </div>
+<!-- /.nav -->
+<div class="container">
+  <div id="ventana1"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;">
+    <form id="formDatosPers" method="post" class="form-horizontal" action="">
+      <div class="row">
+        <div  class="col-md-6" style="margin-top:20px;">
+          <div class="panel-body">          
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="nombre">Nombre:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="telefonoPersonal">Telefono Personal</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="telefonoPersonal" name="telefonoPersonal" placeholder="Nº Telefono" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="documento">D.N.I:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="documento" name="documento" placeholder="D.N.I." />
+              </div>
+            </div>
 
-
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="mail">Email</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="mail" name="mail" placeholder="Email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="mail2">Email Emergencia</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="mail2" name="mail2" placeholder="Email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="fecha">Fecha Nacimiento</label>
+              <div class="col-sm-5">
+                  <input type="date" name="fecha" id="fecha"style="max-width:300px;" class="form-control" placeholder="fecha" >
+              </div>
+            </div>
+            
           </div>
-          <div class="col-md-6" style="margin-top:20px;">
-            <div class="input-group">
-            <span class="input-group-addon" style="min-width:220px;">Apellido:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="apellido" aria-describedby="inputGroupSuccess1Status">
         </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:220px;">Telefono de Emergencia:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="telefonoEmergencia" aria-describedby="inputGroupSuccess1Status">
-        </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:220px;">Talle Remera:</span>
-            <input  style="max-width:300px;"type="text" class="form-control" id="talle" aria-describedby="inputGroupSuccess1Status">
-        </div>
-
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:220px;">¿Tiene alguna dieta Especial?</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="dieta" aria-describedby="inputGroupSuccess1Status">
-        </div>
+        <div  class="col-md-6" style="margin-top:40px;">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="apellido">Apellido</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" />
+            </div>
           </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="telefonoEmergencia">Telefono de Emergencia</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="telefonoEmergencia" name="telefonoEmergencia" placeholder="Telefono Emergencia" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="talle">Talle de Remera</label>
+            <div class="col-sm-5">
+              <select class="form-control" id="talle" name="talle"style="max-width:300px;">
+                  <option value="selecione" disabled selected>Seleccione</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2" style="margin-top:10px;">
+              <img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+              <center>S</center>
+            </div>
+            <div class="col-md-2" style="margin-top:10px;">
+              <img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+              <center>M</center>
+            </div>
+            <div class="col-md-2" style="margin-top:10px;">
+              <img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+              <center>L</center>
+            </div>
+            <div class="col-md-2" style="margin-top:10px;">
+              <img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+              <center>XL</center>
+            </div>
+            <div class="col-md-2" style="margin-top:10px;">
+              <img src="https://http2.mlstatic.com/D_Q_NP_334915-MLA25323126776_012017-D.webp" class="img-thumbnail">
+              <center>XXL</center>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:10px;">
+            <label class="col-sm-4 control-label" style="text-align: center;" for="dieta">¿Tiene alguna dieta Especial?</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="dieta" name="dieta" placeholder="Cual?" />
+            </div>
+          </div>
+        </div>
       </div>
-    <center>
-      <input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(1)">
-    </center>
+      <center>
+        <div class="form-group">
+          <div >
+            <button type="submit" class="btn btn-primary" name="Siguiente1" value="Siguiente">Siguiente</button>
+          </div>
+        </div>
+      </center>
+    </form> 
+  </div>
+</div>
+<!--containerVentana1-->
+<div class="container">
+  <div id="ventana2"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
+    <form id="formDatosMov" method="post" class="form-horizontal" action="">
+      <div class="row">
+        <div  class="col-md-6" style="margin-top:20px;">
+          <div class="panel-body">          
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="eslabon">Nº Eslabon:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="eslabon" name="eslabon" placeholder="Nº Eslabon" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="encargado">Encargado de su diocesis</label>
+              <div class="col-sm-5">
+                <select class="form-control" id="encargado" name="encargado"style="max-width:300px;">
+                    <option value="selecione" disabled selected>Seleccione</option>
+                  <option>Juan</option>
+                  <option>Pepe</option>
+                  <option>Lucas</option>
+                  <option>Emi</option>
+                  <option>Etc</option>
+                </select> 
+              </div>
+            </div>
 
-    <input type="hidden" id="qrCode" name="qrCode" >
-    <div id="success"></div>
-    <div id="error"></div>
-  </form>
-</div>
-</div>
-<!-- panel -->
-<div class="panel panel-primary" id="ventana2"style="margin-top:10px;margin-left:30px;width:95%;display:none">
-<div class="panel-body">
-  <form>
-    <div class="row">
-          <div class="col-md-6" style="margin-top:20px;">
-            <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:178px;">Eslabon:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="eslabon" aria-describedby="inputGroupSuccess1Status">
-        </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:178px;">Diocesis:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="diocesis" aria-describedby="inputGroupSuccess1Status">
-        </div>
 
           </div>
-          <div class="col-md-6" style="margin-top:20px;">
-            <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:220px;">Encargado de su diocesis:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="diocesis" aria-describedby="inputGroupSuccess1Status">
         </div>
-        <div class="input-group" style="margin-top:20px;">
-            <span class="input-group-addon" style="min-width:220px;">Año que hizo el Eslabón:</span>
-            <input style="max-width:300px;" type="text" class="form-control" id="diocesis" aria-describedby="inputGroupSuccess1Status">
-        </div>
+        <div  class="col-md-6" style="margin-top:40px;">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="diocesis">Diocesis:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="diocesis" name="diocesis" placeholder="diocesis" />
+            </div>
           </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="añoEsl">Año que hizo el eslabon</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="añoEsl" name="añoEsl" placeholder="Año" />
+            </div>
+          </div>
+        </div>
       </div>
-    <center>
-      <input  style="margin-top:30px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(1)">
-      <input  style="margin-top:30px;"  class="btn btn-primary" value="Siguiente" onclick="mostrarVentana(2)">
-    </center>
-
-    <input type="hidden" id="qrCode" name="qrCode" >
-    <div id="success"></div>
-    <div id="error"></div>
-  </form>
-</div>
-</div>
-<!-- panel -->
-<!-- panel -->
-<div class="panel panel-primary" id="ventana3"style="margin-top:10px;margin-left:30px;width:95%;display:none">
-<div class="panel-body">
-  <form>
-    <div class="row">
-          <div class="col-md-6" style="margin-top:20px;">
-
-
+      <center>
+        <div class="form-group">
+          <div >
+            <input  style="max-width: 90px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(1)">
+            <button type="submit" class="btn btn-primary" name="Siguiente2" value="Siguiente">Siguiente</button>
           </div>
-          <div class="col-md-6" style="margin-top:20px;">
-
-          </div>
+        </div>
+      </center>
+    </form> 
+  </div>
+</div>
+<!--containerVentana2-->
+<div class="container">
+  <div id="ventana3"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
+    <form id="formDatosMedicos" method="post" class="form-horizontal" action="">
+      <div class="row">
+        <div  class="col-md-6" style="margin-top:20px;">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="diocesis">Diocesis:</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="diocesis" name="diocesis" placeholder="diocesis" />
+            </div>
+          </div>              
+        </div>
+        <div  class="col-md-6" style="margin-top:40px;">
+          
+        </div>
       </div>
-    <center>
-      <input  style="margin-top:30px;"  class="btn btn-primary" value="Atras" onclick="atrasVentana(2)">
-      <input  style="margin-top:30px;"  class="btn btn-primary" value="Registrarse" onclick="generate_qr()">
-    </center>
-
-    <input type="hidden" id="qrCode" name="qrCode" >
-    <div id="success"></div>
-    <div id="error"></div>
-  </form>
+      <center>
+        <div class="form-group">
+          <div >
+            <input class="btn btn-primary" style="max-width: 90px;" value="Atras" onclick="atrasVentana(2)">
+            <button type="submit" class="btn btn-primary" name="Registrar" value="Registrar">Registrar</button>
+            
+          </div>
+        </div>
+      </center>
+      <input type="hidden" id="qrCode" name="qrCode" >
+      <div id="success"></div>
+      <div id="error"></div>
+    </form> 
+  </div>
 </div>
-</div>
-<!-- panel -->
-</div>
-
+<!--containerVentana3-->
 <!-- modal -->
 <center>
-<div>
-<div  id="ventanaError" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-   <div class="modal-dialog ">
-    <div class="modal-content">
-      <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-         <h4 class="modal-title">Codigo QR Generado</h4>
-       </div>
-       <div class="modal-body" id="body">
-       </div>
-       <div class="modal-footer">
-         <button type="button" class="btn btn-success">Aceptar</button>
+  <div>
+    <div  id="ventanaError" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+       <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h4 class="modal-title">Codigo QR Generado</h4>
+           </div>
+           <div class="modal-body" id="body">
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-success">Aceptar</button>
+           </div>
+        </div>
        </div>
     </div>
-   </div>
-</div>
-</div>
+  </div>
 </center>
-
-
-
-</body>
 <script type="text/javascript">
 
 function mostrarVentana(numPestaña){
