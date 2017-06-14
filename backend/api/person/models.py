@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-class DiocesisEntity(models.Model):
+class Diocesis(models.Model):
     nombre = models.CharField(max_length = 100, null = False , blank = False)
     cupo = models.PositiveIntegerField(unique=True, null = False , blank = False)
 
@@ -12,51 +12,29 @@ class DiocesisEntity(models.Model):
         return "{0}".format(self.nombre)
 
 
-class ResponsableEntity(models.Model):
+
+class Estado(models.Model):
+    nombre = models.CharField(max_length = 100, null = False , blank = False)
+    descripcion = models.CharField(max_length = 100, null = False , blank = False)
+
+    def __str__(self):
+        return "{0}".format(self.nombre)
+
+
+class Responsable(models.Model):
     nombre = models.CharField(max_length = 100, null = False , blank = False)
     apellido = models.CharField(max_length = 100, null = False , blank = False)
-    user = models.OneToOneField(User, unique=True, related_name='responsable',null=True, blank=True)
-    diocesis = models.ForeignKey(DiocesisEntity)
+    user = models.OneToOneField(User, unique=True, null=True, blank=True)
+    diocesis = models.ForeignKey(Diocesis)
 
     def __str__(self):
         return "{0},{1}".format(self.apellido,self.nombre)
 
 
 
-class PersonEntity(models.Model):
-    TALLES = (
-        ('NO', 'NO'),
-        ('XS', 'XS'),
-        ('S', 'S'),
-        ('M', 'M'),
-        ('L', 'L'),
-        ('XL', 'XL'),
-        ('XXL', 'XXL'),
-    )
-    nombre = models.CharField(max_length = 100, null = False , blank = False)
-    apellido = models.CharField(max_length = 100, null = False , blank = False)
-    num_doc = models.PositiveIntegerField(unique=True, null = False , blank = False)
-    email_personal = models.EmailField(max_length = 254, null = False , blank = False)
-    tel_emergencia = models.CharField(max_length = 100, null = False , blank = False)
-    tel_personal = models.CharField(max_length = 100, null = False , blank = False)
-    fecha_nacimiento = models.DateField(null = False , blank = False)
-    talle = models.CharField(max_length=2, choices=TALLES, default='NO',null = True , blank = True)
-    descripcion_dieta = models.CharField(max_length = 500, null = True , blank = True)
-    descripcion_familia = models.CharField(max_length = 500, null = True , blank = True)
-    diocesis = models.ForeignKey(DiocesisEntity)
-    num_eslabon = models.PositiveIntegerField(null = False , blank = False)
-    fecha_eslabon = models.DateField(null = False , blank = False)
-    email_contacto = models.EmailField(max_length = 254, null = False , blank = False)
-    pago_retiro = models.BooleanField(default = False)
-    pago_remera = models.BooleanField(default = False)
-    esta_acreditado = models.BooleanField(default = False)
-    descripcion_familia = models.CharField(max_length = 500, null = True , blank = True)
-    descripcion_registro = models.CharField(max_length = 500, null = True , blank = True)
 
 
-
-
-class FichaMedicaEntity(models.Model):
+class FichaMedica(models.Model):
     """Enfermedades respiratorias"""
     broquitis_cronica = models.BooleanField(default = False)
     asma = models.BooleanField(default = False)
@@ -116,3 +94,36 @@ class FichaMedicaEntity(models.Model):
     medico_cabecera = models.CharField(max_length = 500, null = True , blank = True)
     hospital_derivacion = models.CharField(max_length = 500, null = True , blank = True)
     aclaracion = models.CharField(max_length = 500, null = True , blank = True)
+
+
+
+class Person(models.Model):
+    TALLES = (
+        ('NO', 'NO'),
+        ('XS', 'XS'),
+        ('S', 'S'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('XL', 'XL'),
+        ('XXL', 'XXL'),
+    )
+    nombre = models.CharField(max_length = 100, null = False , blank = False)
+    apellido = models.CharField(max_length = 100, null = False , blank = False)
+    num_doc = models.PositiveIntegerField(unique=True, null = False , blank = False)
+    email_personal = models.EmailField(max_length = 254, null = False , blank = False)
+    tel_emergencia = models.CharField(max_length = 100, null = False , blank = False)
+    tel_personal = models.CharField(max_length = 100, null = False , blank = False)
+    fecha_nacimiento = models.DateField(null = False , blank = False)
+    talle = models.CharField(max_length=2, choices=TALLES, default='NO',null = True , blank = True)
+    descripcion_dieta = models.CharField(max_length = 500, null = True , blank = True)
+    descripcion_familia = models.CharField(max_length = 500, null = True , blank = True)
+    num_eslabon = models.PositiveIntegerField(null = False , blank = False)
+    fecha_eslabon = models.DateField(null = False , blank = False)
+    email_contacto = models.EmailField(max_length = 254, null = False , blank = False)
+    pago_retiro = models.BooleanField(default = False)
+    pago_remera = models.BooleanField(default = False)
+    descripcion_familia = models.CharField(max_length = 500, null = True , blank = True)
+    descripcion_registro = models.CharField(max_length = 500, null = True , blank = True)
+    medical_record = models.OneToOneField(FichaMedica, unique=True, null=True, blank=True)
+    diocesis = models.ForeignKey(Diocesis)
+    estado = models.ForeignKey(Estado)

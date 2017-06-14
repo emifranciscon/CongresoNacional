@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Bienvenido a I.R.I.S{% endblock %}
+{% block head %}
+  <link href="{% static "css/estilos-login.css" %}"  rel="stylesheet">
+
+	<meta charset="utf-8">
+{% endblock %}
+
+{% block content %}
+
+
+	<div class="container">
+		<div class="row" style="margin-top:60px;">
+			<div class="col-md-4 col-md-offset-4">
+				<div id="fondo" class="well">
+					<form action="{% url 'login_view' %}" method="post">
+						<center>
+							<fieldset>
+							<img id="logoiris" src="/static/img/logo_movi.png" alt="">
+							<h1 id="titulo" ALIGN=center class="sign-up-title">Inicia sesión para acceder:</h1>
+							<hr id="linea"class="colorgraph">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<div id="error">{{ mensaje }}	</div>
+							</br>
+							<input id="botonlogin" class="btn btn-lg btn-primary btn-block" type="submit" value="Entrar">
+						   </fieldset>
+						</center>
+					</form>
+				</div>
+			</div>
+		</div>
+    </div>
+
+
+
+{% endblock %}

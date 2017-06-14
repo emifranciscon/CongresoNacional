@@ -1,8 +1,8 @@
 from django.contrib import admin
-from person.models import PersonEntity
-from person.models import DiocesisEntity
-from person.models import ResponsableEntity
-from person.models import FichaMedicaEntity
+from person.models import Person
+from person.models import Diocesis
+from person.models import Responsable
+from person.models import FichaMedica
 
 
 # Register your models here.
@@ -21,7 +21,7 @@ class FichaMedicaAdmin(admin.ModelAdmin):
 	pass
 
 
-admin.site.register(PersonEntity, PersonAdmin)
-admin.site.register(DiocesisEntity, DiocesisAdmin)
-admin.site.register(ResponsableEntity, ResponsableAdmin)
-admin.site.register(FichaMedicaEntity, FichaMedicaAdmin)
+admin.site.register(Person, PersonAdmin)
+admin.site.register(Diocesis, DiocesisAdmin)
+admin.site.register(Responsable, ResponsableAdmin)
+admin.site.register(FichaMedica, FichaMedicaAdmin)

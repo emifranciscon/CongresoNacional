@@ -27,9 +27,10 @@ router.register(r'person', PersonViewSet)
 router.register(r'medical', FichaMedicaViewSet)
 
 urlpatterns = [
-    url(r'^$', 'frontend.views.home', name='home'),
-    url(r'^inscripcion/', 'frontend.views.inscripcion', name='home'),
+    url(r'^$', 'frontend.views.home'),
+    url(r'^inscripcion/', 'frontend.views.inscripcion'),
     url(r'^admin/', admin.site.urls),
-    url(r'^api/',include(router.urls)),
-    url(r'^api/diocesis', 'person.views.lista_diocesis'),
+    url(r'^api/',include('person.urls')),
+    url(r'^login/$', 'frontend.views.login_view', name='login_view'),
+    url(r'^logout/$', 'frontend.views.logout_view', name='logaut_view'),  
 ]
