@@ -1,18 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<<<<<<< HEAD
 {% block head %}
-  <link type="text/javascript" href="{% static "js/jquery.js" %}"  rel="stylesheet">
-  <link type="text/javascript" href="{% static "js/qrcode.js" %}"  rel="stylesheet">
-  <link type="text/javascript" href="{% static "js/config-ajax.js" %}"  rel="stylesheet">
-  <link type="text/javascript" href="{% static "js/lib/jquery-1.11.1.js" %}"  rel="stylesheet">
-  <link type="text/javascript" href="{% static "js/dist/jquery.validate.js" %}"  rel="stylesheet">
 
-=======
->>>>>>> d4c1e1a54046ea643102556065a92fbcc474c083
-
+{% endblock %}
 {% block content %}
+
 
 
 <ul class="nav nav-tabs" style="margin-top:90px;">
@@ -250,54 +243,15 @@
     </div>
   </div>
 </center>
-<script type="text/javascript">
+{% endblock %}
 
-function mostrarVentana(numPestaña){
-switch(numPestaña) {
-    case 1:
-    document.getElementById('ventana1').style.display = 'none';
-    document.getElementById('ventana2').style.display = 'block';
-    document.getElementById('ventana3').style.display = 'none';
-    document.getElementById('btn-datosPers').setAttribute("class", "btn-info");
-    document.getElementById('btn-datosMov').setAttribute("class", "btn-primary");
-    document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
-  break;
-  case 2:
-    document.getElementById('ventana1').style.display = 'none';
-    document.getElementById('ventana2').style.display = 'none';
-    document.getElementById('ventana3').style.display = 'block';
-    document.getElementById('btn-datosPers').setAttribute("class", "btn-info");
-    document.getElementById('btn-datosMov').setAttribute("class", "btn-info");
-    document.getElementById('btn-datosMed').setAttribute("class", "btn-primary");
-  break;
-
-}
-}
-
-function atrasVentana(numPestaña){
-switch(numPestaña) {
-  case 1:
-    document.getElementById('ventana1').style.display = 'block';
-    document.getElementById('ventana2').style.display = 'none';
-    document.getElementById('ventana2').style.display = 'none';
-    document.getElementById('btn-datosPers').setAttribute("class", "btn-primary");
-    document.getElementById('btn-datosMov').setAttribute("class", "btn-info");
-    document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
-  break;
-  case 2:
-    document.getElementById('ventana1').style.display = 'none';
-    document.getElementById('ventana2').style.display = 'block';
-    document.getElementById('ventana3').style.display = 'none';
-    document.getElementById('btn-datosPers').setAttribute("class", "btn-info");
-    document.getElementById('btn-datosMov').setAttribute("class", "btn-primary");
-    document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
-  break;
-}
-}
-
-</script>
-
-
-
-
+{% block scriptBase %}
+    <!-- Page script -->
+    <script type="text/javascript" src="{% static "js/qrcode.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/config-ajax.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/qrcode.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/config-ajax.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/lib/jquery-1.11.1.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/dist/jquery.validate.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/app.js" %}"></script>
 {% endblock %}
