@@ -22,7 +22,7 @@
 <!-- /.nav -->
 <div class="container">
   <div id="ventana1"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;">
-    <form id="formDatosPers" method="post" class="form-horizontal" action="">
+    <form id="formDatosPers" class="form-horizontal" action="">
       <div class="row">
         <div  class="col-md-6" style="margin-top:20px;">
           <div class="panel-body">          
@@ -136,7 +136,7 @@
 <!--containerVentana1-->
 <div class="container">
   <div id="ventana2"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
-    <form id="formDatosMov" method="post" class="form-horizontal" action="">
+    <form id="formDatosMov"  class="form-horizontal" action="">
       <div class="row">
         <div  class="col-md-6" style="margin-top:20px;">
           <div class="panel-body">          
@@ -192,19 +192,429 @@
 </div>
 <!--containerVentana2-->
 <div class="container">
-  <div id="ventana3"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
-    <form id="formDatosMedicos" method="post" class="form-horizontal" action="">
+  <div id="ventana3"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;">
+    <form id="formDatosMedicos" class="form-horizontal" action="">
+      <center><h4>Indique la opcion correcta</h4></center>
       <div class="row">
-        <div  class="col-md-6" style="margin-top:20px;">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="diocesis">Diocesis:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="diocesis" name="diocesis" placeholder="diocesis" />
+        <div  class="col-md-6" >
+          <div class="panel panel-default" style="margin-left:20px;">
+            <div class="panel-heading">Sufre de ...?</div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Asma:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si1" onclick="cambioDeCheckpoint(1,1)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no1" onclick="cambioDeCheckpoint(2,1)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+               <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis">Enfisema:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si2" onclick="cambioDeCheckpoint(1,2)"type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no2" onclick="cambioDeCheckpoint(2,2)"type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis">Broquitis Cronica:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si3" onclick="cambioDeCheckpoint(1,3)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no3" onclick="cambioDeCheckpoint(2,3)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Hipertension:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si4" onclick="cambioDeCheckpoint(1,4)"  type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no4" onclick="cambioDeCheckpoint(2,4)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Hipotension:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si5" onclick="cambioDeCheckpoint(1,5)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no5" onclick="cambioDeCheckpoint(2,5)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Disritmia Cardiaca:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si6" onclick="cambioDeCheckpoint(1,6)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no6" onclick="cambioDeCheckpoint(2,6)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Dolor Ciatico:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si7" onclick="cambioDeCheckpoint(1,7)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no7" onclick="cambioDeCheckpoint(2,7)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Escoliosis:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si8" onclick="cambioDeCheckpoint(1,8)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no8" onclick="cambioDeCheckpoint(2,8)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Miastenia:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si9" onclick="cambioDeCheckpoint(1,9)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no9" onclick="cambioDeCheckpoint(2,9)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Diabetes:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si10" onclick="cambioDeCheckpoint(1,10)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no10" onclick="cambioDeCheckpoint(2,10)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Hipertiroidismo:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si11" onclick="cambioDeCheckpoint(1,11)"  type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no11" onclick="cambioDeCheckpoint(2,11)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Daltonismo:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si12" onclick="cambioDeCheckpoint(1,12)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no12" onclick="cambioDeCheckpoint(2,12)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Vision Doble:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si13" onclick="cambioDeCheckpoint(1,13)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no13" onclick="cambioDeCheckpoint(2,13)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Dificultad Auditiva:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si14" onclick="cambioDeCheckpoint(1,14)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no14" onclick="cambioDeCheckpoint(2,14)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Epilepsia:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si15" onclick="cambioDeCheckpoint(1,15)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no15" onclick="cambioDeCheckpoint(2,15)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Jaquecas:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si16" onclick="cambioDeCheckpoint(1,16)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no16" onclick="cambioDeCheckpoint(2,16)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Claustrofobia:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si17" onclick="cambioDeCheckpoint(1,17)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no17" onclick="cambioDeCheckpoint(2,17)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Aragnofobia:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si18" onclick="cambioDeCheckpoint(1,18)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no18" onclick="cambioDeCheckpoint(2,18)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
             </div>
-          </div>              
-        </div>
-        <div  class="col-md-6" style="margin-top:40px;">
-          
+          </div>
+          <div class="panel panel-default" style="margin-left:20px;margin-top:43px;">
+            <div class="panel-heading">Alguna vez sufrio?</div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Infarto Cardiaco:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si19" onclick="cambioDeCheckpoint(1,19)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no19" onclick="cambioDeCheckpoint(2,19)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Derrame:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si20" onclick="cambioDeCheckpoint(1,20)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no20" onclick="cambioDeCheckpoint(2,20)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="descripcion">Descripcion:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <!--Fin panel 1-->             
+        <div  class="col-md-6" >
+          <div class="panel panel-default" style="margin-right:20px;">  
+            <div class="panel-heading">Detalle de interes</div>
+            <div class="panel-body" >
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis">Fuma:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si21" onclick="cambioDeCheckpoint(1,21)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no21" onclick="cambioDeCheckpoint(2,21)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Dificultad Leer:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si22" onclick="cambioDeCheckpoint(1,22)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no22" onclick="cambioDeCheckpoint(2,22)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Medicacion Actual:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si23" onclick="cambioDeCheckpoint(1,23)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no23" onclick="cambioDeCheckpoint(2,23)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="peso">Peso:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="peso" name="peso" placeholder="peso" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="altura">Altura:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="altura" name="altura" placeholder="altura" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="grupo_sanguineo">Grupo Sanguineo:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="grupo_sanguineo" name="grupo_sanguineo" placeholder="Grupo Sanguineo" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="ser_att_medica">Obra Social:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="ser_att_medica" name="ser_att_medica" placeholder="Obra Social" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="medico_cabecera">Medico Cabecera:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="medico_cabecera" name="medico_cabecera" placeholder="medico_cabecera" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="hospital_derivacion">Dospital de Derivacion:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="hospital_derivacion" name="hospital_derivacion" placeholder="hospital_derivacion" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="aclaracion">Aclaracion:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="aclaracion" name="aclaracion" placeholder="aclaracion" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default" style="margin-right:20px;">
+            <div class="panel-heading">Otros de Interes:</div>
+            <div class="panel-body">
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="Alergias">Alergias:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="Alergias" name="Alergias" placeholder="Alergias" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="otras_respiratorias">Problemas Respiratorios:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="otras_respiratorias" name="otras_respiratorias" placeholder="otras_respiratorias" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="otras_circulatorias">Problemas circulatorios:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="otras_circulatorias" name="otras_circulatorias" placeholder="otras_circulatorias" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="otras_musculoesque">Problemas Muscular:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="otras_musculoesque" name="otras_musculoesque" placeholder="otras_musculoesque" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="otras_hormonales">Problemas Hormonal:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="otras_hormonales" name="otras_hormonales" placeholder="otras_hormonales" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="otras_nerviosas">Problemas Nerviosos:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="otras_nerviosas" name="otras_nerviosas" placeholder="otras_nerviosas" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="comprimidos">Si toma Comprimidos indique cuales:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="comprimidos" name="comprimidos" placeholder="comprimidos" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="inyectables">Si usa inyectables indique cuales:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="inyectables" name="inyectables" placeholder="inyectables" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <center>

@@ -19,7 +19,7 @@ $.validator.setDefaults( {
 			document.getElementById('btn-datosMed').setAttribute("class", "btn-primary");
 		};
 		if (form.id=="formDatosMedicos") {
-			generate_qr()
+			alert("llegoAca")
 		};
 		
 	}
@@ -282,6 +282,19 @@ function atrasVentana(numPestaña){
 				document.getElementById('btn-datosMov').setAttribute("class", "btn-primary");
 				document.getElementById('btn-datosMed').setAttribute("class", "btn-info");
 			break;
+	}
+}
+
+function cambioDeCheckpoint(palabra,numeros){
+	switch(palabra) {
+		case 1:
+			debugger
+			document.getElementById('no'+numeros).checked = false;  
+		break;
+		case 2:
+			debugger
+			document.getElementById('si'+numeros).checked = false;
+		break;
 	}
 }
 
