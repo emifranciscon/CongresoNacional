@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top:100px; background-color: whitesmoke;">
+  <div class="row">
+    <div class="col-lg-12" style="margin-top:20px;">
+      <div class="form-group">
+        <input id='text-apellido' class="form-control " type="text" placeholder="Ingrese apellido">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <input id='text-documento' class="form-control " type="text" placeholder="Ingrese documento">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <select id="combo-dio" class="selectpicker" title="Seleccione una diócesis...">
+        </select>
+    </div>
+    <div class="col-md-3">
+      <select id="combo-est" class="selectpicker" title="Seleccione un estado...">
+        </select>
+    </div>
+    <div class="col-md-3">
+      <button id='btn-buscar' type="button" class="btn btn-primary" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-info" style="width: 100%;"><span class="glyphicon glyphicon-pencil"></span> Acciones</button>
+    </div>
+  </div>
+  <hr />
+  <div class="row" style="margin-top:10px;">
+    <div class="col-lg-12" id="container-table">
+      <table class="table table-bordred table-striped" id="table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="checkall" /></th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+            <th>Diócesis</th>
+            <th>Estado</th>
+            <th>Registrado</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody id='table-content'>
+        </tbody>
+      </table>
+      <hr>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block scriptBase %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+<script type="text/javascript" src="{% static "js/work.js" %}"></script>
+
+{% endblock %}

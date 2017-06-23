@@ -14,5 +14,6 @@ router.register(r'medical', FichaMedicaViewSet)
 urlpatterns = [
     url(r'^',include(router.urls)),
     url(r'^diocesis', 'person.views.lista_diocesis'),
+    url(r'^estados', 'person.views.lista_estados'),
     url(r'^register', 'person.views.registered_person'),
 ]

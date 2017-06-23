@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Diocesis(models.Model):
     nombre = models.CharField(max_length = 100, null = False , blank = False)
-    cupo = models.PositiveIntegerField(unique=True, null = False , blank = False)
+    cupo = models.PositiveIntegerField(unique=False, null = False , blank = False)
 
     def __str__(self):
         return "{0}".format(self.nombre)
@@ -120,10 +120,10 @@ class Person(models.Model):
     num_eslabon = models.PositiveIntegerField(null = False , blank = False)
     fecha_eslabon = models.DateField(null = False , blank = False)
     email_contacto = models.EmailField(max_length = 254, null = False , blank = False)
-    pago_retiro = models.BooleanField(default = False)
     pago_remera = models.BooleanField(default = False)
     descripcion_familia = models.CharField(max_length = 500, null = True , blank = True)
     descripcion_registro = models.CharField(max_length = 500, null = True , blank = True)
+    fecha_registro = models.DateField(auto_now_add=True)
     medical_record = models.OneToOneField(FichaMedica, unique=True, null=True, blank=True)
     diocesis = models.ForeignKey(Diocesis)
     estado = models.ForeignKey(Estado)

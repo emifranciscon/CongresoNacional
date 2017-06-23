@@ -81,14 +81,12 @@
     <script src="{% static "js/bootstrap.min.js" %}"></script>
 
     <!-- Page script -->
-    <script type="text/javascript" src="{% static "js/qrcode.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/config-ajax.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/jquery.js" %}"  rel="stylesheet"></script>
-    <script type="text/javascript" src="{% static "js/qrcode.js" %}"  rel="stylesheet"></script>
-    <script type="text/javascript" src="{% static "js/config-ajax.js" %}"  rel="stylesheet"></script>
-    <script type="text/javascript" src="{% static "js/lib/jquery-1.11.1.js" %}"  rel="stylesheet"></script>
-    <script type="text/javascript" src="{% static "js/dist/jquery.validate.js" %}"  rel="stylesheet"></script>
-    <script type="text/javascript" src="{% static "js/app.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/config-ajax.js" %}" ></script>
+
+    {% block scriptBase %}
+    {% endblock %}
+
+
 
 
 </body>

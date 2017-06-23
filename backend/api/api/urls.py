@@ -29,8 +29,9 @@ router.register(r'medical', FichaMedicaViewSet)
 urlpatterns = [
     url(r'^$', 'frontend.views.home'),
     url(r'^inscripcion/', 'frontend.views.inscripcion'),
+    url(r'^work/', 'frontend.views.work_view'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/',include('person.urls')),
     url(r'^login/$', 'frontend.views.login_view', name='login_view'),
-    url(r'^logout/$', 'frontend.views.logout_view', name='logaut_view'),  
+    url(r'^logout/$', 'frontend.views.logout_view', name='logaut_view'),
 ]
