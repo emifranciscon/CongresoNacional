@@ -31,6 +31,11 @@ $.validator.setDefaults( {
 			var telefonoEmergencia=document.getElementById('telefonoEmergencia').value
 			var dieta=document.getElementById('dieta').value
 			var GFamiliar=document.getElementById('GFamiliar').value
+			var talle=document.getElementById('talle').value
+			var fechaEslabon=document.getElementById('fechaEslabon').value
+			var eslabon=document.getElementById('eslabon').value
+			var diocesis=document.getElementById('diocesis').value
+
 			for (var i = 1; i < 26; i++) {
 				si[i]=document.getElementById('si'+i).checked
 				no[i]=document.getElementById('no'+i).checked
@@ -65,8 +70,35 @@ $.validator.setDefaults( {
 			var dificultad_leer = si[23]
 			var malformacion_corazon = si[24]
 			var medicacion_actual = si[25]
-			var body = '{"data_person":{"nombre":"'+nombre+'","apellido":"'+apellido+'","num_doc":'+documento+',"email_personal":"'+mail+'","tel_emergencia":"'+telefonoEmergencia+'","tel_personal":"'+telefonoPersonal+'","fecha_nacimiento":"'+fecha+'","talle":"M","descripcion_dieta":"'+dieta+'","num_eslabon":35,"fecha_eslabon":"2014-4-9","email_contacto":"'+mail2+'","pago_remera":false,"descripcion_familia":"Con dos hijos","descripcion_registro":"","diocesis":"Villa Maria","estado":"PreInscripto"},"medical_record":{"asma":'+asma+',"enfisema":'+enfisema+',"broquitis_cronica":'+broquitis_cronica+',"alergias":"","otras_respiratorias":"","hipertension":'+hipertension+',"hipotension":'+hipotension+',"infarto_cardiaco":'+infarto_cardiaco+',"disritmia_cardiaca":'+disritmia_cardiaca+',"malformacion_corazon":'+malformacion_corazon+',"otras_circulatorias":"","dolor_ciatico":'+dolor_ciatico+',"escoliosis":'+escoliosis+',"miastenia":'+miastenia+',"otras_musculoesque":"","diabetes":'+diabetes+',"hipertiroidismo":'+hipertiroidismo+',"otras_hormonales":"","medicacion_actual":'+medicacion_actual+',"comprimidos":"","inyectables":"","dificultad_leer":'+dificultad_leer+',"vision_doble":'+vision_doble+',"dificultad_colores":'+dificultad_colores+',"dificultad_colores_desc":"","dificultad_oir":'+dificultad_oir+',"epilepsia":'+epilepsia+',"derrame":'+derrame+',"derrame_desc":"","jaquecas":'+jaquecas+',"otras_nerviosas":"","vertigo":'+vertigo+',"claustrofobia":'+claustrofobia+',"aragnofobia":'+aragnofobia+',"otras_enfermedades":"","fuma":'+fuma+',"nadar":false,"peso":"","altura":"","grupo_sanguineo":"","ser_att_medica":"","medico_cabecera":"","hospital_derivacion":"","aclaracion":""}}'
-			debugger	
+			var comprimidos=document.getElementById('comprimidos').value
+			var inyectables=document.getElementById('inyectables').value
+			var peso=document.getElementById('peso').value
+			var altura=document.getElementById('altura').value
+			var grupo_sanguineo=document.getElementById('grupo_sanguineo').value
+			var ser_att_medica=document.getElementById('ser_att_medica').value			
+			var medico_cabecera=document.getElementById('medico_cabecera').value			
+			var hospital_derivacion=document.getElementById('hospital_derivacion').value			
+			var aclaracion=document.getElementById('aclaracion').value			
+			var alergias=document.getElementById('alergias').value
+			var otras_respiratorias=document.getElementById('otras_respiratorias').value
+			var otras_circulatorias=document.getElementById('otras_circulatorias').value						
+			var otras_musculoesque=document.getElementById('otras_musculoesque').value						
+			var otras_hormonales=document.getElementById('otras_hormonales').value						
+			var otras_nerviosas=document.getElementById('otras_nerviosas').value						
+			var bodyJson= {"data_person":{"nombre":nombre, "apellido":apellido,"num_doc":parseInt(documento),"email_personal":mail,"tel_emergencia":telefonoEmergencia,"tel_personal":telefonoPersonal,"fecha_nacimiento":fecha,"talle":talle,"descripcion_dieta":dieta,"num_eslabon":parseInt(eslabon),"fecha_eslabon":fechaEslabon,"email_contacto":mail2,"pago_remera":false,"descripcion_familia":GFamiliar,"descripcion_registro":"","diocesis":diocesis,"estado":"PreInscripto"},"medical_record":{"asma":asma,"enfisema":enfisema,"broquitis_cronica":broquitis_cronica,"alergias":alergias,"otras_respiratorias":otras_respiratorias,"hipertension":hipertension,"hipotension":hipotension,"infarto_cardiaco":infarto_cardiaco,"disritmia_cardiaca":disritmia_cardiaca,"malformacion_corazon":malformacion_corazon,"otras_circulatorias":otras_circulatorias,"dolor_ciatico":dolor_ciatico,"escoliosis":escoliosis,"miastenia":miastenia,"otras_musculoesque":otras_musculoesque,"diabetes":diabetes,"hipertiroidismo":hipertiroidismo,"otras_hormonales":otras_hormonales,"medicacion_actual":medicacion_actual,"comprimidos":comprimidos,"inyectables":inyectables,"dificultad_leer":dificultad_leer,"vision_doble":vision_doble,"dificultad_colores":dificultad_colores,"dificultad_colores_desc":"","dificultad_oir":dificultad_oir,"epilepsia":epilepsia,"derrame":derrame,"derrame_desc":"","jaquecas":jaquecas,"otras_nerviosas":otras_nerviosas,"vertigo":vertigo,"claustrofobia":claustrofobia,"aragnofobia":aragnofobia,"otras_enfermedades":"","fuma":fuma,"nadar":false,"peso":peso,"altura":altura,"grupo_sanguineo":grupo_sanguineo,"ser_att_medica":ser_att_medica,"medico_cabecera":medico_cabecera,"hospital_derivacion":hospital_derivacion,"aclaracion":aclaracion}}
+			var url = "/api/register";
+			console.log(JSON.stringify(bodyJson))
+			$.ajax({
+			        data:  JSON.stringify(bodyJson), //datos que se envian a traves de ajax
+			        url:   url, //archivo que recibe la peticion
+			        type:  'POST', //método de envio
+			        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+			            console.log(response)
+			        },
+			        error: function(response){
+			        	console.log(response)
+			        }
+			});
 		};		
 	}
 } );
@@ -192,7 +224,7 @@ $( document ).ready( function () {
 			encargado: {
 				required: true
 			},
-			fecha: {
+			fechaEslabon: {
 				required: true
 			},
 			añoEsl:{
@@ -217,7 +249,7 @@ $( document ).ready( function () {
 			encargado: {
 				required: "Por favor, seleccione una persona.",	
 			},
-			fecha: "Por favor, ingrese fecha",
+			fechaEslabon: "Por favor, ingrese fecha",
 			añoEsl: {
 				required: "Por favor, ingrese el año que hizo el eslabon.",
 				digits: "Por favor, ingrese solo digitos.",
