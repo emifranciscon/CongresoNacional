@@ -89,6 +89,7 @@ $.validator.setDefaults( {
 			var url = "/api/register";
 			console.log(JSON.stringify(bodyJson))
 			$.ajax({
+				
 			        data:  JSON.stringify(bodyJson), //datos que se envian a traves de ajax
 			        url:   url, //archivo que recibe la peticion
 			        type:  'POST', //método de envio
@@ -97,7 +98,9 @@ $.validator.setDefaults( {
 			        },
 			        error: function(response){
 			        	console.log(response)
-			        }
+			        },
+			        contentType: 'application/json',
+        			dataType:'json'
 			});
 		};		
 	}
