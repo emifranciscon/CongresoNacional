@@ -33,9 +33,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="telefonoPersonal">Telefono Personal</label>
+              <label class="col-sm-4 control-label" for="apellido">Apellido</label>
               <div class="col-sm-5">
-                <input type="text" class="form-control" id="telefonoPersonal" name="telefonoPersonal" placeholder="Nº Telefono" />
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" />
               </div>
             </div>
             <div class="form-group">
@@ -68,9 +68,9 @@
         </div>
         <div  class="col-md-6" style="margin-top:40px;">
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="apellido">Apellido</label>
+            <label class="col-sm-4 control-label" for="telefonoPersonal">Telefono Personal</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" />
+              <input type="text" class="form-control" id="telefonoPersonal" name="telefonoPersonal" placeholder="Nº Telefono" />
             </div>
           </div>
           <div class="form-group">
@@ -79,7 +79,44 @@
               <input type="text" class="form-control" id="telefonoEmergencia" name="telefonoEmergencia" placeholder="Telefono Emergencia" />
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="margin-top:10px;">
+            <label class="col-sm-4 control-label" style="text-align: center;" for="dieta">¿Tiene alguna dieta Especial?</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="dieta" name="dieta" placeholder="Cual?" />
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:10px;">
+            <label class="col-sm-4 control-label" style="text-align: center;" for="GFamiliar">Descripcion Familiar</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" id="GFamiliar" name="GFamiliar" placeholder="Grupo Familiar" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <center>
+        <div class="form-group">
+          <div >
+            <button type="submit" class="btn btn-primary" name="Siguiente1" value="Siguiente">Siguiente</button>
+          </div>
+        </div>
+      </center>
+    </form> 
+  </div>
+</div>
+<!--containerVentana1-->
+<div class="container">
+  <div id="ventana2"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
+    <form id="formDatosMov"  class="form-horizontal" action="">
+      <div class="row">
+        <div  class="col-md-6" style="margin-top:20px;">
+          <div class="panel-body">          
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="eslabon">Nº Eslabon:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="eslabon" name="eslabon" placeholder="Nº Eslabon" />
+              </div>
+            </div>
+            <div class="form-group">
             <label class="col-sm-4 control-label" for="talle">Talle de Remera</label>
             <div class="col-sm-5">
               <select class="form-control" id="talle" name="talle"style="max-width:300px;">
@@ -114,54 +151,6 @@
               <center>XXL</center>
             </div>
           </div>
-
-          <div class="form-group" style="margin-top:10px;">
-            <label class="col-sm-4 control-label" style="text-align: center;" for="dieta">¿Tiene alguna dieta Especial?</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="dieta" name="dieta" placeholder="Cual?" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <center>
-        <div class="form-group">
-          <div >
-            <button type="submit" class="btn btn-primary" name="Siguiente1" value="Siguiente">Siguiente</button>
-          </div>
-        </div>
-      </center>
-    </form> 
-  </div>
-</div>
-<!--containerVentana1-->
-<div class="container">
-  <div id="ventana2"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
-    <form id="formDatosMov"  class="form-horizontal" action="">
-      <div class="row">
-        <div  class="col-md-6" style="margin-top:20px;">
-          <div class="panel-body">          
-            <div class="form-group">
-              <label class="col-sm-4 control-label" for="eslabon">Nº Eslabon:</label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="eslabon" name="eslabon" placeholder="Nº Eslabon" />
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="col-sm-4 control-label" for="encargado">Encargado de su diocesis</label>
-              <div class="col-sm-5">
-                <select class="form-control" id="encargado" name="encargado"style="max-width:300px;">
-                    <option value="selecione" disabled selected>Seleccione</option>
-                  <option>Juan</option>
-                  <option>Pepe</option>
-                  <option>Lucas</option>
-                  <option>Emi</option>
-                  <option>Etc</option>
-                </select> 
-              </div>
-            </div>
-
-
           </div>
         </div>
         <div  class="col-md-6" style="margin-top:40px;">
@@ -172,9 +161,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="añoEsl">Año que hizo el eslabon</label>
+            <label class="col-sm-4 control-label" for="fecha">Fecha que hizo el eslabon?</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="añoEsl" name="añoEsl" placeholder="Año" />
+                <input type="date" name="fecha" id="fecha"style="max-width:300px;" class="form-control" placeholder="fecha" >
             </div>
           </div>
         </div>
@@ -192,7 +181,7 @@
 </div>
 <!--containerVentana2-->
 <div class="container">
-  <div id="ventana3"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;display:none;">
+  <div id="ventana3"class="panel panel-default" style="margin-top:20px; background-color: whitesmoke;">
     <form id="formDatosMedicos" class="form-horizontal" action="">
       <center><h4>Indique la opcion correcta</h4></center>
       <div class="row">
@@ -434,6 +423,19 @@
                     </div>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="vertigo">Vertigo:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="vertigo">Si</label>
+                      <input id="si19" onclick="cambioDeCheckpoint(1,19)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="vertigo">No</label>
+                      <input id="no19" onclick="cambioDeCheckpoint(2,19)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="panel panel-default" style="margin-left:20px;margin-top:43px;">
@@ -444,11 +446,11 @@
                 <div class="row">
                     <div  class="col-md-2">
                       <label class="col-sm-4 control-label" for="diocesis">Si</label>
-                      <input id="si19" onclick="cambioDeCheckpoint(1,19)" type="checkbox" style="margin-top:10px;">
+                      <input id="si20" onclick="cambioDeCheckpoint(1,20)" type="checkbox" style="margin-top:10px;">
                     </div>
                     <div  class="col-md-2">
                       <label class="col-sm-4 control-label" for="diocesis">No</label>
-                      <input id="no19" onclick="cambioDeCheckpoint(2,19)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                      <input id="no20" onclick="cambioDeCheckpoint(2,20)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
                     </div>
                 </div>
               </div>
@@ -457,11 +459,11 @@
                 <div class="row">
                     <div  class="col-md-2">
                       <label class="col-sm-4 control-label" for="diocesis">Si</label>
-                      <input id="si20" onclick="cambioDeCheckpoint(1,20)" type="checkbox" style="margin-top:10px;">
+                      <input id="si21" onclick="cambioDeCheckpoint(1,21)" type="checkbox" style="margin-top:10px;">
                     </div>
                     <div  class="col-md-2">
                       <label class="col-sm-4 control-label" for="diocesis">No</label>
-                      <input id="no20" onclick="cambioDeCheckpoint(2,20)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                      <input id="no21" onclick="cambioDeCheckpoint(2,21)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
                     </div>
                 </div>
               </div>
@@ -484,19 +486,6 @@
                 <div class="row">
                     <div  class="col-md-2">
                       <label class="col-sm-4 control-label" for="diocesis">Si</label>
-                      <input id="si21" onclick="cambioDeCheckpoint(1,21)" type="checkbox" style="margin-top:10px;">
-                    </div>
-                    <div  class="col-md-2">
-                      <label class="col-sm-4 control-label" for="diocesis">No</label>
-                      <input id="no21" onclick="cambioDeCheckpoint(2,21)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
-                    </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-4 control-label" for="diocesis"> Dificultad Leer:</label>
-                <div class="row">
-                    <div  class="col-md-2">
-                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
                       <input id="si22" onclick="cambioDeCheckpoint(1,22)" type="checkbox" style="margin-top:10px;">
                     </div>
                     <div  class="col-md-2">
@@ -506,7 +495,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-4 control-label" for="diocesis"> Medicacion Actual:</label>
+                <label class="col-sm-4 control-label" for="diocesis"> Dificultad Leer:</label>
                 <div class="row">
                     <div  class="col-md-2">
                       <label class="col-sm-4 control-label" for="diocesis">Si</label>
@@ -516,6 +505,44 @@
                       <label class="col-sm-4 control-label" for="diocesis">No</label>
                       <input id="no23" onclick="cambioDeCheckpoint(2,23)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
                     </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="malCorazon">¿Posee Malformacion del corazón?:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="malCorazon">Si</label>
+                      <input id="si24" onclick="cambioDeCheckpoint(1,24)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="malCorazon">No</label>
+                      <input id="no24" onclick="cambioDeCheckpoint(2,24)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="diocesis"> Medicacion Actual:</label>
+                <div class="row">
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">Si</label>
+                      <input id="si25" onclick="cambioDeCheckpoint(1,25)" type="checkbox" style="margin-top:10px;">
+                    </div>
+                    <div  class="col-md-2">
+                      <label class="col-sm-4 control-label" for="diocesis">No</label>
+                      <input id="no25" onclick="cambioDeCheckpoint(2,25)" type="checkbox" style="margin-top:10px;margin-left:7px;" >
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="comprimidos">Si toma Comprimidos indique cuales:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="comprimidos" name="comprimidos" placeholder="comprimidos" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label" for="inyectables">Si usa inyectables indique cuales:</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="inyectables" name="inyectables" placeholder="inyectables" />
                 </div>
               </div>
               <div class="form-group">
@@ -599,18 +626,6 @@
                 <label class="col-sm-4 control-label" for="otras_nerviosas">Problemas Nerviosos:</label>
                 <div class="col-sm-5">
                   <input type="text" class="form-control" id="otras_nerviosas" name="otras_nerviosas" placeholder="otras_nerviosas" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-4 control-label" for="comprimidos">Si toma Comprimidos indique cuales:</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="comprimidos" name="comprimidos" placeholder="comprimidos" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-4 control-label" for="inyectables">Si usa inyectables indique cuales:</label>
-                <div class="col-sm-5">
-                  <input type="text" class="form-control" id="inyectables" name="inyectables" placeholder="inyectables" />
                 </div>
               </div>
             </div>

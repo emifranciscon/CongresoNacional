@@ -1,4 +1,5 @@
-
+var si = new Array(24)
+var no = new Array(24)
 $.validator.setDefaults( {
 	submitHandler: function (form) {
 		debugger;
@@ -19,9 +20,54 @@ $.validator.setDefaults( {
 			document.getElementById('btn-datosMed').setAttribute("class", "btn-primary");
 		};
 		if (form.id=="formDatosMedicos") {
-			alert("llegoAca")
-		};
-		
+			debugger		
+			var nombre=document.getElementById('nombre').value
+			var apellido=document.getElementById('apellido').value
+			var documento=document.getElementById('documento').value
+			var mail=document.getElementById('mail').value
+			var mail2=document.getElementById('mail2').value
+			var fecha=document.getElementById('fecha').value
+			var telefonoPersonal=document.getElementById('telefonoPersonal').value
+			var telefonoEmergencia=document.getElementById('telefonoEmergencia').value
+			var dieta=document.getElementById('dieta').value
+			var GFamiliar=document.getElementById('GFamiliar').value
+			for (var i = 1; i < 26; i++) {
+				si[i]=document.getElementById('si'+i).checked
+				no[i]=document.getElementById('no'+i).checked
+				if (si[i]== no[i]) {
+					alert("por favor complete todas las consultas")
+					break
+				}
+			};
+			debugger
+			var asma = si[1]
+			var enfisema = si[2]
+			var broquitis_cronica = si[3]
+			var hipertension = si[4]
+			var hipotension = si[5]
+			var disritmia_cardiaca = si[6]
+			var dolor_ciatico = si[7]
+			var escoliosis = si[8]
+			var miastenia = si[9]
+			var diabetes = si[10]
+			var hipertiroidismo = si[11]
+			var dificultad_colores = si[12]
+			var vision_doble = si[13]
+			var dificultad_oir = si[14]
+			var epilepsia = si[15]
+			var jaquecas = si[16]
+			var claustrofobia = si[17]
+			var aragnofobia = si[18]
+			var vertigo = si[19]
+			var infarto_cardiaco = si[20]
+			var derrame = si[21]
+			var fuma = si[22]
+			var dificultad_leer = si[23]
+			var malformacion_corazon = si[24]
+			var medicacion_actual = si[25]
+			var body = '{"data_person":{"nombre":"'+nombre+'","apellido":"'+apellido+'","num_doc":'+documento+',"email_personal":"'+mail+'","tel_emergencia":"'+telefonoEmergencia+'","tel_personal":"'+telefonoPersonal+'","fecha_nacimiento":"'+fecha+'","talle":"M","descripcion_dieta":"'+dieta+'","num_eslabon":35,"fecha_eslabon":"2014-4-9","email_contacto":"'+mail2+'","pago_remera":false,"descripcion_familia":"Con dos hijos","descripcion_registro":"","diocesis":"Villa Maria","estado":"PreInscripto"},"medical_record":{"asma":'+asma+',"enfisema":'+enfisema+',"broquitis_cronica":'+broquitis_cronica+',"alergias":"","otras_respiratorias":"","hipertension":'+hipertension+',"hipotension":'+hipotension+',"infarto_cardiaco":'+infarto_cardiaco+',"disritmia_cardiaca":'+disritmia_cardiaca+',"malformacion_corazon":'+malformacion_corazon+',"otras_circulatorias":"","dolor_ciatico":'+dolor_ciatico+',"escoliosis":'+escoliosis+',"miastenia":'+miastenia+',"otras_musculoesque":"","diabetes":'+diabetes+',"hipertiroidismo":'+hipertiroidismo+',"otras_hormonales":"","medicacion_actual":'+medicacion_actual+',"comprimidos":"","inyectables":"","dificultad_leer":'+dificultad_leer+',"vision_doble":'+vision_doble+',"dificultad_colores":'+dificultad_colores+',"dificultad_colores_desc":"","dificultad_oir":'+dificultad_oir+',"epilepsia":'+epilepsia+',"derrame":'+derrame+',"derrame_desc":"","jaquecas":'+jaquecas+',"otras_nerviosas":"","vertigo":'+vertigo+',"claustrofobia":'+claustrofobia+',"aragnofobia":'+aragnofobia+',"otras_enfermedades":"","fuma":'+fuma+',"nadar":false,"peso":"","altura":"","grupo_sanguineo":"","ser_att_medica":"","medico_cabecera":"","hospital_derivacion":"","aclaracion":""}}'
+			debugger	
+		};		
 	}
 } );
 jQuery.validator.addMethod("notEqual", function(value, element, param) {
@@ -67,11 +113,7 @@ $( document ).ready( function () {
 			},
 			fecha: {
 				required: true
-			},
-			talle: {
-				required: true
 			}
-
 		},
 		messages: {
 			nombre: {
@@ -99,10 +141,7 @@ $( document ).ready( function () {
 			},
 			mail: "Por favor, ingrese su email correctamente.",
 			mail2:"Por favor, ingrese su email de emegencia correctamente.",
-			fecha: "Por favor, ingrese fecha",
-			talle:{
-				required: "Por favor, seleccione un talle"
-			}
+			fecha: "Por favor, ingrese fecha"
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -153,11 +192,18 @@ $( document ).ready( function () {
 			encargado: {
 				required: true
 			},
+			fecha: {
+				required: true
+			},
 			añoEsl:{
 				required: true,
 				digits: true,
 				maxlength: 4,
+			},
+			talle: {
+				required: true
 			}
+
 		},
 		messages: {
 			eslabon: {
@@ -171,10 +217,14 @@ $( document ).ready( function () {
 			encargado: {
 				required: "Por favor, seleccione una persona.",	
 			},
+			fecha: "Por favor, ingrese fecha",
 			añoEsl: {
 				required: "Por favor, ingrese el año que hizo el eslabon.",
 				digits: "Por favor, ingrese solo digitos.",
 				maxlength: "El año no contiene mas de 4 digitos",
+			},
+			talle:{
+				required: "Por favor, seleccione un talle"
 			}
 		},
 		errorElement: "em",
@@ -288,11 +338,9 @@ function atrasVentana(numPestaña){
 function cambioDeCheckpoint(palabra,numeros){
 	switch(palabra) {
 		case 1:
-			debugger
 			document.getElementById('no'+numeros).checked = false;  
 		break;
 		case 2:
-			debugger
 			document.getElementById('si'+numeros).checked = false;
 		break;
 	}
