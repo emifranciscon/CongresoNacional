@@ -6,4 +6,4 @@ class PersonFilter(django_filters.FilterSet):
 
 	class Meta:
 		model = Person
-		fields = ('diocesis','estado','apellido','num_doc',)
+		fields = ('diocesis', 'apellido', 'estado','num_doc')
