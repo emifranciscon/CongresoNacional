@@ -69,6 +69,8 @@ $(document).ready(function() {
       row = document.createElement("tr");
       obj = data[i];
 
+      row.setAttribute("reference_id",obj['id']);
+
       column = document.createElement("td");
       input = document.createElement("input");
       input.setAttribute("type", "checkbox")
@@ -188,7 +190,26 @@ $(document).ready(function() {
     $('#btn-buscar').click(function() {
 
       getPerson(getParameters())
-    })
+    });
+
+
+    $('#btn-acciones').click(function() {
+
+
+      $("#table-content tr").each(function() {
+        tr = $(this)
+
+        tr.children().each()
+        id = $(this).attr("reference_id");
+
+        console.log($(this).attr('checked'))
+        console.log(id);
+
+      });
+
+
+    });
+
   }
 
   applyEventTable();

@@ -3,7 +3,8 @@ from person.models import FichaMedica, Diocesis, Person, Estado
 
 
 class PersonSerializer(serializers.ModelSerializer):
-	diocesis = serializers.SlugRelatedField(many=False,queryset=Diocesis.objects.all() ,slug_field='nombre')
+	#diocesis = serializers.SlugRelatedField(many=False,queryset=Diocesis.objects.all() ,slug_field='nombre')
+	diocesis = serializers.SlugRelatedField(many=False,read_only=True ,slug_field='nombre')
 	estado = serializers.SlugRelatedField(many=False,queryset=Estado.objects.all(), slug_field='nombre')
 	medical_record = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
 	fecha_registro = serializers.DateField(read_only=True)

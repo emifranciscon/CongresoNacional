@@ -25,7 +25,7 @@
     <form id="formDatosPers" class="form-horizontal" action="">
       <div class="row">
         <div  class="col-md-6" style="margin-top:20px;">
-          <div class="panel-body">          
+          <div class="panel-body">
             <div class="form-group">
               <label class="col-sm-4 control-label" for="nombre">Nombre:</label>
               <div class="col-sm-5">
@@ -63,7 +63,7 @@
                   <input type="date" name="fecha" id="fecha"style="max-width:300px;" class="form-control" placeholder="fecha" >
               </div>
             </div>
-            
+
           </div>
         </div>
         <div  class="col-md-6" style="margin-top:40px;">
@@ -100,7 +100,7 @@
           </div>
         </div>
       </center>
-    </form> 
+    </form>
   </div>
 </div>
 <!--containerVentana1-->
@@ -109,7 +109,7 @@
     <form id="formDatosMov"  class="form-horizontal" action="">
       <div class="row">
         <div  class="col-md-6" style="margin-top:20px;">
-          <div class="panel-body">          
+          <div class="panel-body">
             <div class="form-group">
               <label class="col-sm-4 control-label" for="eslabon">Nº Eslabon:</label>
               <div class="col-sm-5">
@@ -126,7 +126,7 @@
                 <option value="L">L</option>
                 <option value="XL">XL</option>
                 <option value="XXL">XXL</option>
-              </select> 
+              </select>
             </div>
           </div>
           <div class="row">
@@ -176,7 +176,7 @@
           </div>
         </div>
       </center>
-    </form> 
+    </form>
   </div>
 </div>
 <!--containerVentana2-->
@@ -475,10 +475,10 @@
               </div>
             </div>
           </div>
-        </div> 
-        <!--Fin panel 1-->             
+        </div>
+        <!--Fin panel 1-->
         <div  class="col-md-6" >
-          <div class="panel panel-default" style="margin-right:20px;">  
+          <div class="panel panel-default" style="margin-right:20px;">
             <div class="panel-heading">Detalle de interes</div>
             <div class="panel-body" >
               <div class="form-group">
@@ -637,14 +637,16 @@
           <div >
             <input class="btn btn-primary" style="max-width: 90px;" value="Atras" onclick="atrasVentana(2)">
             <button type="submit" class="btn btn-primary" name="Registrar" value="Registrar">Registrar</button>
-            
+            <button id='test-btn' type="button" class="btn btn-success">TEST</button>
+
+
           </div>
         </div>
       </center>
       <input type="hidden" id="qrCode" name="qrCode" >
       <div id="success"></div>
       <div id="error"></div>
-    </form> 
+    </form>
   </div>
 </div>
 <!--containerVentana3-->
@@ -662,6 +664,7 @@
            </div>
            <div class="modal-footer">
              <button type="button" class="btn btn-success">Aceptar</button>
+
            </div>
         </div>
        </div>
@@ -671,12 +674,13 @@
 {% endblock %}
 
 {% block scriptBase %}
+
+    <script type="text/javascript">
+        var es_diocesis_vm = "{% autoescape off %}{{ es_diocesis_vm }}{% endautoescape %}"
+       console.log(es_diocesis_vm)
+    </script>
     <!-- Page script -->
     <script type="text/javascript" src="{% static "js/qrcode.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/config-ajax.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/qrcode.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/config-ajax.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/lib/jquery-1.11.1.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/dist/jquery.validate.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery.validate.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/app.js" %}"></script>
 {% endblock %}
