@@ -29,6 +29,7 @@ router.register(r'medical', FichaMedicaViewSet)
 urlpatterns = [
     url(r'^$', 'frontend.views.home'),
     url(r'^inscripcion/', 'frontend.views.inscripcion'),
+    url(r'^inscripcion_aux/', 'frontend.views.inscripcion_aux'),
     url(r'^work/', 'frontend.views.work_view'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/',include('person.urls')),

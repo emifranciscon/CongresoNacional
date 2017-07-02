@@ -1,7 +1,8 @@
 var si = new Array(24)
 var no = new Array(24)
 $.validator.setDefaults({
-  submitHandler: function(form) {
+  submitHandler: function(form,event) {
+        event.preventDefault();
     if (form.id == "formDatosPers") {
       document.getElementById('ventana1').style.display = 'none';
       document.getElementById('ventana2').style.display = 'block';
@@ -184,7 +185,7 @@ $(document).ready(function() {
       "data_person": {
         "nombre": "Emiliano",
         "apellido": "Martin",
-        "num_doc": 681341342,
+        "num_doc": 681341344,
         "email_personal": "emimartin26@hotmail.com",
         "tel_emergencia": "123123123123",
         "tel_personal": "123123123123",
@@ -258,7 +259,9 @@ $(document).ready(function() {
         console.log(data)
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log("status: %d -- msg: %s",jqXHR.status,jqXHR.responseText)
+
+
+				console.log("status: %d -- msg: %s",jqXHR.status,jqXHR.responseText)
       },
       contentType: 'application/json',
       dataType: 'json'
@@ -501,6 +504,7 @@ $(document).ready(function() {
   });
 
 });
+
 function atrasVentana(numPestaña) {
   switch (numPestaña) {
     case 1:
