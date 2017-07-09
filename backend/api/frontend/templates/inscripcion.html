@@ -82,13 +82,14 @@
           <div class="form-group" style="margin-top:10px;">
             <label class="col-sm-4 control-label" style="text-align: center;" for="dieta">¿Tiene alguna dieta Especial?</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="dieta" name="dieta" placeholder="Cual?" />
+              <textarea type="text" class="form-control" style="height:2cm;" data-toggle="tooltip" title="Si posee alguna dieta especial, por favor expliquela"id="dieta" name="dieta" placeholder="Cual?" ></textarea>
             </div>
           </div>
           <div class="form-group" style="margin-top:10px;">
             <label class="col-sm-4 control-label" style="text-align: center;" for="GFamiliar">Descripcion Familiar</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="GFamiliar" name="GFamiliar" placeholder="Grupo Familiar" />
+              <textarea class="form-control" style="height:2cm;" data-toggle="tooltip" title="Si viene al encuentro con su grupo familiar, por favor ingrese como se conforma el mismo" id="GFamiliar" name="GFamiliar" placeholder="Grupo Familiar"></textarea>
+              
             </div>
           </div>
         </div>
@@ -650,7 +651,7 @@
   </div>
 </div>
 <!--containerVentana3-->
-<!-- modal -->
+<!-- modal Checkboxs-->
 <center>
   <div>
     <div  id="ventanaError" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -658,12 +659,35 @@
         <div class="modal-content">
           <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-             <h4 class="modal-title">Codigo QR Generado</h4>
+
+             <a class="btn btn-danger" class="modal-title" style="width:100%;" disabled>Error</a>
            </div>
            <div class="modal-body" id="body">
+            Por favor, seleccione todos las opciones.
            </div>
            <div class="modal-footer">
-             <button type="button" class="btn btn-success">Aceptar</button>
+
+           </div>
+        </div>
+       </div>
+    </div>
+  </div>
+</center>
+<!-- modal Checkboxs-->
+<center>
+  <div>
+    <div  id="ventanaError500" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+       <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+             <a class="btn btn-danger" class="modal-title" style="width:100%;" disabled>Error</a>
+           </div>
+           <div class="modal-body" id="body">
+            Se ha producido un error, en este momento no podemos realizar la registracion, por favor reitente mas tarde y disculpe las molestias ocacionadas.
+           </div>
+           <div class="modal-footer">
 
            </div>
         </div>

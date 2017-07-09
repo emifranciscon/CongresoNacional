@@ -38,7 +38,7 @@ $.validator.setDefaults({
         si[i] = document.getElementById('si' + i).checked
         no[i] = document.getElementById('no' + i).checked
         if (si[i] == no[i]) {
-          alert("por favor complete todas las consultas")
+          $("#ventanaError").modal()
           break
         }
       };
@@ -178,7 +178,7 @@ jQuery.validator.addMethod("lettersonly", function(value, element) {
 
 $(document).ready(function() {
 	console.log(es_diocesis_vm)
-
+  $('[data-toggle="tooltip"]').tooltip();   
   $('#test-btn').click(function() {
     var bodyJson = {
       "data_person": {
@@ -259,6 +259,10 @@ $(document).ready(function() {
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log("status: %d -- msg: %s",jqXHR.status,jqXHR.responseText)
+        if (jqXHR.status=500) {
+          $("#ventanaError500").modal()
+        };
+        
       },
       contentType: 'application/json',
       dataType: 'json'
@@ -269,21 +273,25 @@ $(document).ready(function() {
     rules: {
       nombre: {
         required: true,
-        lettersonly: true
+        lettersonly: true,
+        maxlength: 100
       },
       apellido: {
         required: true,
-        lettersonly: true
+        lettersonly: true,
+        maxlength: 100
       },
       telefonoEmergencia: {
         required: true,
         digits: true,
-        minlength: 10
+        minlength: 10,
+        maxlength: 100
       },
       telefonoPersonal: {
         required: true,
         digits: true,
-        minlength: 10
+        minlength: 10,
+        maxlength: 100
       },
       documento: {
         required: true,
@@ -292,11 +300,13 @@ $(document).ready(function() {
       },
       mail: {
         required: true,
-        email: true
+        email: true,
+        maxlength: 254
       },
       mail2: {
         required: true,
-        email: true
+        email: true,
+        maxlength: 100
       },
       fecha: {
         required: true
@@ -305,16 +315,19 @@ $(document).ready(function() {
     messages: {
       nombre: {
         required: "Por favor, ingrese su nombre.",
-        lettersonly: "Por favor, ingrese solo letras sin asento."
+        lettersonly: "Por favor, ingrese solo letras sin asento.",
+        maxlength: "A alcanzado el maximo de caracteres"
       },
       apellido: {
         required: "Por favor, ingrese su apellido.",
-        lettersonly: "Por favor, ingrese solo letras sin asento."
+        lettersonly: "Por favor, ingrese solo letras sin asento.",
+        maxlength: "A alcanzado el maximo de caracteres"
       },
       telefonoEmergencia: {
         required: "Por favor, ingrese un telefono de emercencia.",
         digits: "Por favor, ingrese solo digitos.",
-        minlength: "Su dni contiene 12 digitos"
+        minlength: "Su dni contiene 12 digitos",
+        maxlength: "A alcanzado el maximo de caracteres"
       },
       telefonoPersonal: {
         required: "Por favor, ingrese su telefono Personal.",
@@ -326,8 +339,16 @@ $(document).ready(function() {
         digits: "Por favor, ingrese solo digitos.",
         minlength: "Su dni contiene 8 digitos"
       },
-      mail: "Por favor, ingrese su email correctamente.",
-      mail2: "Por favor, ingrese su email de emegencia correctamente.",
+      mail: {
+        required: "Por favor, ingrese su email.",
+        email:"Por favor, ingrese su email correctamente.",
+        maxlength: "A alcanzado el maximo de caracteres"
+      },
+      mail2: {
+        required: "Por favor, ingrese el email de emercencia.",
+        email:"Por favor, ingrese su email correctamente.",
+        maxlength: "A alcanzado el maximo de caracteres"
+      },
       fecha: "Por favor, ingrese fecha"
     },
     errorElement: "em",
