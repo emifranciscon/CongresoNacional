@@ -39,14 +39,12 @@ class FichaMedica(models.Model):
     broquitis_cronica = models.BooleanField(default = False)
     asma = models.BooleanField(default = False)
     enfisema = models.BooleanField(default = False)
-    broquitis_cronica = models.BooleanField(default = False)
     alergias = models.CharField(max_length = 500, null = True , blank = True)
     otras_respiratorias = models.CharField(max_length = 500, null = True , blank = True)
 
     """Enfermedades circulatorias"""
     hipertension = models.BooleanField(default = False)
     hipotension = models.BooleanField(default = False)
-    infarto_cardiaco = models.BooleanField(default = False)
     infarto_cardiaco = models.BooleanField(default = False)
     disritmia_cardiaca = models.BooleanField(default = False)
     malformacion_corazon = models.BooleanField(default = False)

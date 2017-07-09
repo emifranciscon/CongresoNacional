@@ -14,6 +14,7 @@ from django.db import transaction
 
 
 # Create your views here.
+INIT = 1
 
 class PersonViewSet(viewsets.ModelViewSet):
 	serializer_class = PersonSerializer
@@ -43,6 +44,20 @@ def lista_estados(request):
     serializer = EstadoSerializer(estados, many=True)
     return Response(serializer.data)
 
+@api_view(['PUT'])
+def update_persons(request):
+	personsToUpdate = request.data["persons"]
+	newState = request.data["state"]
+	observaciones = request.data["observaciones"]
+	for personPk in personsToUpdate:
+		person = Person.objects.get(pk=personPk)
+		person.estado = Estado.objects.get(pk=newState)
+		person.descripcion_registro = observaciones
+		person.save()
+	#print(personsToUpdate,newState,observaciones)
+	return JsonResponse({"status":"ok"}, status=200)
+
+
 @transaction.atomic
 @api_view(['POST'])
 def registered_person(request):
@@ -69,6 +84,6 @@ def registered_person(request):
 
 
 	#Al momento de guardar en base seteamos la ficha medica y la diocesis
-	serializer_person.save(medical_record=serializer_medical.save(),diocesis = resp.diocesis)
+	serializer_person.save(medical_record=serializer_medical.save(),diocesis = resp.diocesis, estado = Estado.objects.get(pk=INIT))
 
 	return JsonResponse({"id_person":serializer_person.data["id"]}, status=201)

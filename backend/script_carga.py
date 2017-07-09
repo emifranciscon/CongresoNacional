@@ -5,7 +5,7 @@
 
 #./manage.py shell < script_carga.py
 
-print "Poblando Base de datos"
+print("Poblando Base de datos")
 
 from person.models import Estado
 estado4 = Estado(pk = 4, nombre = 'Eliminado', descripcion='descripcion')
@@ -52,6 +52,3 @@ diocesis15 = Diocesis(pk = 15, nombre = 'San Rafael', cupo = 50)
 diocesis15.save()
 diocesis16 = Diocesis(pk = 16, nombre = 'Rosario', cupo = 50)
 diocesis16.save()
-
-
-from django.contrib.auth.models import User

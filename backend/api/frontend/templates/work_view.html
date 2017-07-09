@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_aux.html' %}
 
 
 {% load static %}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container" style="margin-top:100px; background-color: whitesmoke;">
+<div class="container" style=" background-color: whitesmoke;">
   <div class="row">
     <div class="col-lg-12" style="margin-top:20px;">
       <div class="form-group">
@@ -54,6 +54,7 @@
             <th>Registrado</th>
             <th>Email</th>
             <th>Teléfono</th>
+            <th>Observaciones</th>
           </tr>
         </thead>
         <tbody id='table-content'>
@@ -65,6 +66,8 @@
 
 </div>
 
+<!-- the form to be viewed as dialog-->
+{% include 'modal.html' %}
 
 {% endblock %}
 

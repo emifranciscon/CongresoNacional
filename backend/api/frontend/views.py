@@ -8,12 +8,26 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from django.contrib.auth.views import *
-from person.models import Responsable
+from person.models import Responsable, Person
 # Create your views here.
 
+@login_required(login_url = "/login/")
 def home(request):
-	template = 'index.html'
-	return render(request,template)
+	template = 'home.html'
+	###Validacion cupo
+	resp = Responsable.objects.get(user=request.user.id)
+	persons = Person.objects.filter(diocesis=resp.diocesis)
+	registrados = persons.count()
+	dioc = resp.diocesis
+	cupo_total = dioc.cupo
+	cupo_disponible = cupo_total - registrados
+	isLimited = False
+	if registrados >= cupo_total:
+		isLimited = True
+
+	print(isLimited)
+	ctx = {'diocesis':dioc.nombre, 'persons':persons, 'cupo_total':cupo_total, 'cupo_disponible': cupo_disponible, 'isLimited':isLimited }
+	return render_to_response(template,ctx)
 
 
 
@@ -34,7 +48,6 @@ def inscripcion(request):
 	return render_to_response(template,ctx,
         context_instance = RequestContext(request)
     )
-	return render(request,template)
 
 
 
@@ -55,7 +68,6 @@ def inscripcion_aux(request):
 	return render_to_response(template,ctx,
         context_instance = RequestContext(request)
     )
-	return render(request,template)
 
 @login_required(login_url = "/login/")
 def work_view(request):
@@ -86,7 +98,7 @@ def login_view(request):
                mensaje = "Usuario y/o contraseña incorrecto"
         form = LoginForm()
         ctx = {'form':form, 'mensaje': mensaje}
-        return render_to_response(template,ctx,context_instance= RequestContext(request))
+        return render_to_response(template,ctx,context_instance = RequestContext(request))
 
 
 @login_required(login_url = "/login/")

@@ -39,11 +39,11 @@
           <div class="row">
             <div class="col-sm-6 form-group">
               <label>Documento *</label>
-              <input id="num_doc" type="text" placeholder="Ingresar numero de documento aqui.." class="form-control" required="" data-parsley-maxlength="20">
+              <input id="num_doc" type="text" placeholder="Ingresar numero de documento aqui.." class="form-control" required="" data-parsley-maxlength="9">
             </div>
             <div class="col-sm-6 form-group">
               <label>Fecha nacimiento *</label>
-              <input id="fecha_nacimiento" type="text" placeholder="mm-dd-yyyy" class="form-control datepicker" required="">
+              <input id="fecha_nacimiento" type="text" placeholder="yyyy-mm-dd" class="form-control datepicker" required="">
             </div>
           </div>
           <div class="row">
@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm-6 form-group">
               <label>Fecha eslabon *</label>
-              <input id="fecha_eslabon" type="text" placeholder="mm-dd-yyyy" class="form-control datepicker" required="">
+              <input id="fecha_eslabon" type="text" placeholder="yyyy-mm-dd" class="form-control datepicker" required="">
             </div>
           </div>
           <div class="row">
@@ -86,6 +86,8 @@
               <textarea id="descripcion_familia" placeholder="Ingresar cantidad de hijos y la edad de cada uno. En caso de venir papa y mama, solo uno de los dos completar esta seccion." rows="3" class="form-control" data-parsley-maxlength="500" ></textarea>
             </div>
           </div>
+
+
           <div class="row">
             <div class="col-sm-6 form-group">
               <label>Talle de Remera *</label>
@@ -101,11 +103,13 @@
             </div>
             <div class="col-sm-6 form-group">
               <label>Medidas</label>
-                 <img src="{% static "img/medidas.jpeg" %}" class="img-responsive">
+                 <img src="{% static "img/medidas.jpeg" %}" href="{% static "img/medidas.jpeg" %}" class="img-responsive">
               </div>
           </div>
           <hr />
-          <button id="btn-siguiente" value="validate" type="submit" class="btn btn-lg btn-info"><i class="fa fa-arrow-right" aria-hidden="true"></i> Siguiente</button>
+          <a href="{% url 'home_view' %}" class="btn btn-lg btn-info" role="button"><span class="glyphicon glyphicon-home"></span> Inicio</a>
+          <button id="btn-siguiente" value="validate" type="submit" class="btn btn-lg btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Siguiente</button>
+
         </div>
       </form>
     </div>
@@ -139,6 +143,7 @@
             <CENTER>
             <button id="btn-atras" class="btn btn-lg btn-info"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atras</button>
             <button id="btn-registrar" value="validate" type="submit" class="btn btn-lg btn-success"><i class="fa fa-check" aria-hidden="true"></i> Registrar</button>
+
             </CENTER>
         </div>
       </div>
@@ -161,18 +166,6 @@
        console.log(es_diocesis_vm)
     </script>
 
-    <script>
-      function cambioDeCheckpoint(palabra, numeros) {
-      switch (palabra) {
-        case 1:
-          document.getElementById('no' + numeros).checked = false;
-          break;
-        case 2:
-          document.getElementById('si' + numeros).checked = false;
-          break;
-      }
-    }
-    </script>
     <!-- Page script -->
     <script type="text/javascript" src="{% static "js/config.js" %}"></script>
     <script type="text/javascript" src="{% static "js/utils.js" %}"></script>

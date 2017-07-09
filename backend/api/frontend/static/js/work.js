@@ -44,7 +44,7 @@ $(document).ready(function() {
     tbl.appendChild(tbl_head)
     tbl.appendChild(tbl_body)
 
-    console.log(tbl)
+    //console.log(tbl)
     document.getElementById('container-table').appendChild(tbl)
 
   }
@@ -61,7 +61,8 @@ $(document).ready(function() {
       'estado',
       'fecha_registro',
       'email_personal',
-      'tel_personal'
+      'tel_personal',
+      'descripcion_registro'
     ];
 
     for (var i = 0; i < data.length; i++) {
@@ -69,7 +70,7 @@ $(document).ready(function() {
       row = document.createElement("tr");
       obj = data[i];
 
-      row.setAttribute("reference_id",obj['id']);
+      row.setAttribute("reference_id", obj['id']);
 
       column = document.createElement("td");
       input = document.createElement("input");
@@ -79,14 +80,29 @@ $(document).ready(function() {
       column.appendChild(input)
       row.appendChild(column)
 
-      console.log(row)
+      //console.log(row)
       for (var j = 0; j < fields.length; j++) {
         field = fields[j]
         value = obj[field]
-        column = document.createElement("td");
-        text_column = document.createTextNode(value);
-        column.appendChild(text_column);
-        row.appendChild(column);
+        if(field === 'descripcion_registro'){
+          center = document.createElement("center");
+          button = document.createElement("button");
+          button.setAttribute("text",value);
+          button.setAttribute("class",'btn btn-info descripcion_registro');
+          icon = document.createElement("span");
+          icon.setAttribute("class",'glyphicon glyphicon-zoom-in');
+          button.appendChild(icon);
+          column = document.createElement("td");
+          center.appendChild(button)
+          column.appendChild(center);
+          row.appendChild(column);
+        }else{
+          column = document.createElement("td");
+          text_column = document.createTextNode(value);
+          column.appendChild(text_column);
+          row.appendChild(column);
+        }
+
       }
 
       table.appendChild(row)
@@ -106,7 +122,6 @@ $(document).ready(function() {
       }
     });
 
-
     //ARMO DINAMICAMENTE LA URL
     size_params = Object.size(map);
     counter_params = 0;
@@ -121,13 +136,15 @@ $(document).ready(function() {
       }
     });
 
-    console.log('GET URI: %s',url)
-
+    console.log('GET URI: %s', url)
 
     $.ajax({method: "GET", url: url}).done(function(data) {
 
       getRow(data);
-
+       $(".descripcion_registro").click(function(){
+        var text = $(this).attr('text')
+        alertify.alert('Observaciones', text, function() {});
+      });
     })
 
   }
@@ -162,6 +179,22 @@ $(document).ready(function() {
     })
   }
 
+  function getElementsToUpdate() {
+    var listToEdit = []
+    $("#table-content tr").each(function() {
+      row = $(this)
+
+      checkbox = row.find('input[type=checkbox]')
+      if (checkbox.is(":checked")) {
+        id_person = row.attr("reference_id");
+        listToEdit.push(id_person)
+      }
+
+    });
+
+    return listToEdit;
+  }
+
   function getParameters() {
     var apellido = $('#text-apellido').val()
     var documento = $('#text-documento').val()
@@ -186,37 +219,74 @@ $(document).ready(function() {
     });
   }
 
+  function search(){
+    getPerson(getParameters());
+  }
+
   function applyEvents() {
     $('#btn-buscar').click(function() {
 
-      getPerson(getParameters())
-    });
+      search()
 
+
+    });
 
     $('#btn-acciones').click(function() {
-
-
-      $("#table-content tr").each(function() {
-        tr = $(this)
-
-        tr.children().each()
-        id = $(this).attr("reference_id");
-
-        console.log($(this).attr('checked'))
-        console.log(id);
-
-      });
-
-
+      var elementToUpdate = getElementsToUpdate();
+      if (elementToUpdate.length > 0) {
+        $('#combo-est-modal').selectpicker('val', '');
+        $('#observaciones-modal').val("")
+        $("#myModal").modal()
+      } else {
+        alertify.alert('Atencion!', 'No ha seleccionado ningún elemento.', function() {});
+      }
     });
 
+    $('#btn-confirmar-modal').click(function() {
+      var elementToUpdate = getElementsToUpdate();
+      var stateToUpdate = $('#combo-est-modal').val()
+      var observaciones = $('#observaciones-modal').val()
+
+      console.log(stateToUpdate)
+      if (stateToUpdate === "" ) {
+        $('#label-error-modal').text("Seleccione un estado.")
+        $('#label-error-modal').removeClass('hide')
+      } else if(observaciones.length > 500) {
+        $('#label-error-modal').text("Campo Observaciones no puede superar los 500 caracteres.")
+        $('#label-error-modal').removeClass('hide')
+      } else {
+        $('#label-error-modal').addClass('hide')
+        var dataToUpdate = {
+          persons: elementToUpdate,
+          state: stateToUpdate,
+          observaciones: observaciones
+        };
+
+        $.ajax({
+          data: JSON.stringify(dataToUpdate), //datos que se envian a traves de ajax
+          url: "/api/update/", //archivo que recibe la peticion
+          type: 'PUT', //método de envio
+          success: function(data, textStatus, jqXHR) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            alertify.success('Actualización exitosa!');
+            search()
+            $('#myModal').modal('toggle');
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log("status: %d -- msg: %s", jqXHR.status, jqXHR.responseText)
+            alertify.error('Hubo un error en la actualización!');
+          },
+          contentType: 'application/json',
+          dataType: 'json'
+        });
+
+      }
+    });
   }
 
   applyEventTable();
   applyEvents();
-  //loadDiocesis();
-  //loadEstados();
   loadData('combo-est', '/api/estados/')
+  loadData('combo-est-modal', '/api/estados/')
   loadData('combo-dio', '/api/diocesis/')
 
 });
