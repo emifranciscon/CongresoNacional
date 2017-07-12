@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^estados', views.lista_estados),
     url(r'^register', views.registered_person),
     url(r'^update', views.update_persons),
+    url(r'^pago_update', views.update_pago),
 
 ]

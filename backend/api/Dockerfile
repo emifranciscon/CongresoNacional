@@ -9,6 +9,8 @@ WORKDIR $WEBSEVER_DIR
 
 ADD requirements.txt $WEBSEVER_DIR/
 
+RUN pip install gunicorn
+
 RUN pip install -r requirements.txt
 
 ADD . $WEBSEVER_DIR/

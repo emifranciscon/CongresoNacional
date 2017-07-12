@@ -14,7 +14,8 @@ services:
 
   web:
     build: ./api
-    command: python manage.py runserver 0.0.0.0:8000
+    #command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn 0.0.0.0:8000 -b api/api/wsgi.py
     volumes:
       - ./api:/webserver
     ports:

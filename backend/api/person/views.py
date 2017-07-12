@@ -58,6 +58,20 @@ def update_persons(request):
 	return JsonResponse({"status":"ok"}, status=200)
 
 
+@api_view(['PUT'])
+def update_pago(request):
+	personsToUpdate = int(request.data["id_person"])
+	newState = request.data["value"]
+	if newState == 'true':
+		pago = True
+	else:
+		pago = False
+
+	person = Person.objects.get(pk=personsToUpdate)
+	person.pago_remera = pago
+	person.save()
+	return JsonResponse({"status":"ok"}, status=200)
+
 @transaction.atomic
 @api_view(['POST'])
 def registered_person(request):
@@ -66,7 +80,7 @@ def registered_person(request):
 	resp = Responsable.objects.get(user=request.user.id)
 	count_registered = Person.objects.filter(diocesis=resp.diocesis).count()
 	count_cupo = resp.diocesis.cupo
-	print("count_registered: {0} - count_cupo: {1}".format(count_registered,count_cupo))
+	#print("count_registered: {0} - count_cupo: {1}".format(count_registered,count_cupo))
 
 	if count_registered >= count_cupo:
 		return JsonResponse({"msg": "llego al limite de cupo por diocesis"}, status=409)

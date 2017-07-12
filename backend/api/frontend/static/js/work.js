@@ -62,6 +62,7 @@ $(document).ready(function() {
       'fecha_registro',
       'email_personal',
       'tel_personal',
+      'pago_remera',
       'descripcion_registro'
     ];
 
@@ -96,7 +97,21 @@ $(document).ready(function() {
           center.appendChild(button)
           column.appendChild(center);
           row.appendChild(column);
-        } else {
+        } else if( field === 'pago_remera') {
+          center = document.createElement("center");
+
+          //<th><input type="checkbox" id="checkall" /></th>
+          column = document.createElement("td");
+          input = document.createElement("input");
+          input.setAttribute("type", "checkbox");
+          input.setAttribute("class", "checkremera")
+          input.checked = value
+          input.setAttribute("id_element",obj['id'])
+          center.appendChild(input)
+          column.appendChild(center)
+          row.appendChild(column)
+
+        }else{
           column = document.createElement("td");
           text_column = document.createTextNode(value);
           column.appendChild(text_column);
@@ -145,6 +160,39 @@ $(document).ready(function() {
         var text = $(this).attr('text')
         alertify.alert('Observaciones', text, function() {});
       });
+
+      $(".checkremera").change(function() {
+           var cb = $(this);
+           var id_element = cb.attr('id_element');
+           var state = $(this).prop('checked')
+           console.log(id_element,state)
+
+          var dataToUpdate = {
+            "id_person": id_element,
+            "value":state.toString()
+          }
+
+          console.log(id_element, $(this).prop('checked'), dataToUpdate)
+
+           $.ajax({
+             data: JSON.stringify(dataToUpdate), //datos que se envian a traves de ajax
+             url: "/api/pago_update/", //archivo que recibe la peticion
+             type: 'PUT', //método de envio
+             success: function(data, textStatus, jqXHR) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+              console.log("success")
+              cb.prop('checked', state);
+
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+               console.log("error")
+               cb.prop('checked', !state);
+             },
+             contentType: 'application/json',
+             dataType: 'json'
+           });
+      });
+
+
     })
 
   }
@@ -169,12 +217,6 @@ $(document).ready(function() {
 
       $(combo).selectpicker('refresh');
 
-      /*
-      $(combo).on('hidden.bs.select', function(e) {
-        id = $(this).val();
-        getPerson(id);
-      });
-      */
 
     })
   }
