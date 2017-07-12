@@ -15,8 +15,8 @@ services:
   nginx:
     image: nginx:latest
     container_name: NGINXDOCKERNAME
-    ports:
-      - "8000:8000"
+    #ports:
+    #  - "8000:8000"
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
       - ./static:/static  <--- HERE
