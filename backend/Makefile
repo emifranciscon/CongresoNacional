@@ -27,3 +27,6 @@ init_db:
 
 poblate_db:
 		docker-compose run web python manage.py shell < script_carga.py
+
+static:
+	docker-compose run web python manage.py collectstatic

@@ -25,7 +25,7 @@ SECRET_KEY = 'imo*b6!*#i$4_air*kc46e(59ean-fy(dma19095ky#he4#e+4'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,9 +134,13 @@ USE_L10N = True
 STATIC_URL = '/static/'
 
 
+STATIC_ROOT = '/static/'
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
 
 
 REST_FRAMEWORK = {
