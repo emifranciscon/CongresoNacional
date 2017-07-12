@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Comision(models.Model):
+    nombre = models.CharField(max_length = 100, null = False , blank = False)
+    descripcion = models.CharField(max_length = 100, null = True , blank = True)
+
+    def __str__(self):
+        return "{0}".format(self.nombre)
+
+class DetalleDiocesis(models.Model):
+    comision = models.ForeignKey(Comision)
+    descripcion = models.CharField(max_length = 1000, null = True , blank = True)
+
+    def __str__(self):
+        return "{0}".format(self.nombre)
 
 class Diocesis(models.Model):
     nombre = models.CharField(max_length = 100, null = False , blank = False)
@@ -112,7 +125,7 @@ class Person(models.Model):
     tel_emergencia = models.CharField(max_length = 100, null = False , blank = False)
     tel_personal = models.CharField(max_length = 100, null = False , blank = False)
     fecha_nacimiento = models.DateField(null = False , blank = False)
-    talle = models.CharField(max_length=2, choices=TALLES, default='NO',null = True , blank = True)
+    talle = models.CharField(max_length=5, choices=TALLES, default='NO',null = True , blank = True)
     descripcion_dieta = models.CharField(max_length = 500, null = True , blank = True)
     descripcion_familia = models.CharField(max_length = 500, null = True , blank = True)
     num_eslabon = models.PositiveIntegerField(null = False , blank = False)
@@ -125,3 +138,4 @@ class Person(models.Model):
     medical_record = models.OneToOneField(FichaMedica, unique=True, null=True, blank=True)
     diocesis = models.ForeignKey(Diocesis)
     estado = models.ForeignKey(Estado)
+    detalle_dioc = models.ForeignKey(DetalleDiocesis, null=True, blank=True)

@@ -84,19 +84,19 @@ $(document).ready(function() {
       for (var j = 0; j < fields.length; j++) {
         field = fields[j]
         value = obj[field]
-        if(field === 'descripcion_registro'){
+        if (field === 'descripcion_registro') {
           center = document.createElement("center");
           button = document.createElement("button");
-          button.setAttribute("text",value);
-          button.setAttribute("class",'btn btn-info descripcion_registro');
+          button.setAttribute("text", value);
+          button.setAttribute("class", 'btn btn-info descripcion_registro');
           icon = document.createElement("span");
-          icon.setAttribute("class",'glyphicon glyphicon-zoom-in');
+          icon.setAttribute("class", 'glyphicon glyphicon-zoom-in');
           button.appendChild(icon);
           column = document.createElement("td");
           center.appendChild(button)
           column.appendChild(center);
           row.appendChild(column);
-        }else{
+        } else {
           column = document.createElement("td");
           text_column = document.createTextNode(value);
           column.appendChild(text_column);
@@ -141,7 +141,7 @@ $(document).ready(function() {
     $.ajax({method: "GET", url: url}).done(function(data) {
 
       getRow(data);
-       $(".descripcion_registro").click(function(){
+      $(".descripcion_registro").click(function() {
         var text = $(this).attr('text')
         alertify.alert('Observaciones', text, function() {});
       });
@@ -219,26 +219,27 @@ $(document).ready(function() {
     });
   }
 
-  function search(){
+  function search() {
     getPerson(getParameters());
+  }
+
+  function cleanModal() {
+    $('#combo-est-modal').selectpicker('val', '');
+    $('#observaciones-modal').val("");
   }
 
   function applyEvents() {
     $('#btn-buscar').click(function() {
-
       search()
-
-
     });
 
     $('#btn-acciones').click(function() {
       var elementToUpdate = getElementsToUpdate();
       if (elementToUpdate.length > 0) {
-        $('#combo-est-modal').selectpicker('val', '');
-        $('#observaciones-modal').val("")
-        $("#myModal").modal()
+        cleanModal();
+        $("#myModal").modal();
       } else {
-        alertify.alert('Atencion!', 'No ha seleccionado ningún elemento.', function() {});
+        alertify.alert('Atención!', 'No ha seleccionado ningún elemento.', function() {});
       }
     });
 
@@ -247,11 +248,10 @@ $(document).ready(function() {
       var stateToUpdate = $('#combo-est-modal').val()
       var observaciones = $('#observaciones-modal').val()
 
-      console.log(stateToUpdate)
-      if (stateToUpdate === "" ) {
+      if (stateToUpdate === "") {
         $('#label-error-modal').text("Seleccione un estado.")
         $('#label-error-modal').removeClass('hide')
-      } else if(observaciones.length > 500) {
+      } else if (observaciones.length > 500) {
         $('#label-error-modal').text("Campo Observaciones no puede superar los 500 caracteres.")
         $('#label-error-modal').removeClass('hide')
       } else {
@@ -267,7 +267,7 @@ $(document).ready(function() {
           url: "/api/update/", //archivo que recibe la peticion
           type: 'PUT', //método de envio
           success: function(data, textStatus, jqXHR) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-            alertify.success('Actualización exitosa!');
+            alertify.success('Actualización Éxitosa!');
             search()
             $('#myModal').modal('toggle');
           },

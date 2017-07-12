@@ -53,7 +53,7 @@ $(document).ready(function() {
       url: "/api/register", //archivo que recibe la peticion
       type: 'POST', //método de envio
       success: function(data, textStatus, jqXHR) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-        alertify.alert('Atencion!', 'Registro realizado con exito!!', function(){
+        alertify.alert('Atención!', 'Registro realizado con Éxito!!', function(){
           location.reload(true);
         });
       },
@@ -90,7 +90,7 @@ $(document).ready(function() {
     //show as confirm
     alertify.confirm(pre, success, function() {}).set({
       labels: {
-        ok: 'Acceptar',
+        ok: 'Aceptar',
         cancel: 'Cancelar'
       },
       padding: false

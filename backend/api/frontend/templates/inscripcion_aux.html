@@ -43,7 +43,7 @@
             </div>
             <div class="col-sm-6 form-group">
               <label>Fecha nacimiento *</label>
-              <input id="fecha_nacimiento" type="text" placeholder="yyyy-mm-dd" class="form-control datepicker" required="">
+              <input id="fecha_nacimiento" type="text" placeholder="aaaa-mm-dd" class="form-control datepicker" required="">
             </div>
           </div>
           <div class="row">
@@ -52,28 +52,28 @@
               <input id="email_personal" type="email" placeholder="Ingresar email aqui.." class="form-control" required="" data-parsley-maxlength="254">
             </div>
             <div class="col-sm-6 form-group">
-              <label>Email contacto diocesis *</label>
+              <label>Email contacto diócesis *</label>
               <input id="email_contacto" type="email" placeholder="Inngresar email aqui.." class="form-control" required="" data-parsley-maxlength="254">
             </div>
           </div>
           <div class="row">
             <div class="col-sm-6 form-group">
-              <label>Telefono Personal *</label>
+              <label>Teléfono Personal *</label>
               <input id="tel_personal" type="text" placeholder="Ingresar telefono aqui.." class="form-control" required="" data-parsley-maxlength="100">
             </div>
             <div class="col-sm-6 form-group">
-              <label>Telefono de Emergencia *</label>
+              <label>Teléfono de Emergencia *</label>
               <input id="tel_emergencia" type="text" placeholder="Ingresar telefono aqui.." class="form-control" required="" data-parsley-maxlength="100">
             </div>
           </div>
           <div class="row">
             <div class="col-sm-6 form-group">
-              <label>Numero de eslabon *</label>
+              <label>Número de Eslabón *</label>
               <input id="num_eslabon" type="text" placeholder="Ingresar numero aqui.." class="form-control" required="" data-parsley-maxlength="3">
             </div>
             <div class="col-sm-6 form-group">
-              <label>Fecha eslabon *</label>
-              <input id="fecha_eslabon" type="text" placeholder="yyyy-mm-dd" class="form-control datepicker" required="">
+              <label>Fecha Eslabón *</label>
+              <input id="fecha_eslabon" type="text" placeholder="aaaa-mm-dd" class="form-control datepicker" required="">
             </div>
           </div>
           <div class="row">
@@ -83,7 +83,7 @@
             </div>
             <div class="col-sm-6 form-group">
               <label>¿Vienes con hijos?</label>
-              <textarea id="descripcion_familia" placeholder="Ingresar cantidad de hijos y la edad de cada uno. En caso de venir papa y mama, solo uno de los dos completar esta seccion." rows="3" class="form-control" data-parsley-maxlength="500" ></textarea>
+              <textarea id="descripcion_familia" placeholder="Ingresar cantidad de hijos y la edad de cada uno. En caso de venir papá y mamá, solo uno de los dos completar esta sección" rows="3" class="form-control" data-parsley-maxlength="500" ></textarea>
             </div>
           </div>
 
@@ -94,16 +94,16 @@
               <select class="form-control" id="talle" required="">
                 <option value="">Seleccione un talle..</option>
                 <option value="NO">No quiero remera</option>
+                <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
                 <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
               </select>
             </div>
             <div class="col-sm-6 form-group">
               <label>Medidas</label>
-                 <img src="{% static "img/medidas.jpeg" %}" href="{% static "img/medidas.jpeg" %}" class="img-responsive">
+                 <img src="{% static "img/talles_2.jpeg" %}" href="{% static "img/talles_2.jpeg" %}" class="img-responsive">
               </div>
           </div>
           <hr />
@@ -120,7 +120,7 @@
   <h3 class="well">Ficha medica</h3>
   <div id="ventana3"class="panel panel-default" style=" background-color: whitesmoke;">
     <form id="formDatosMedicos" data-parsley-validate="" class="form-horizontal" action="">
-      <center><h4>Complete la siguiente ficha medica:</h4></center>
+      <center><h4>Complete la siguiente ficha médica:</h4></center>
       <div class="row">
         <div  class="col-md-6" >
         {% include 'ficha_medica/respiratorias.html' %}

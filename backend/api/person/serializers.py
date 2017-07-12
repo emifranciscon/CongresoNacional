@@ -9,6 +9,8 @@ class PersonSerializer(serializers.ModelSerializer):
 	estado = serializers.SlugRelatedField(many=False,read_only=True ,slug_field='nombre')
 	medical_record = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
 	fecha_registro = serializers.DateField(read_only=True)
+	detalle_dioc = serializers.SlugRelatedField(many=False,read_only=True ,slug_field='comision')
+
 
 	class Meta:
 		model = Person

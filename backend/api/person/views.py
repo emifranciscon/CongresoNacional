@@ -10,7 +10,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 
 from django.db import transaction
-
+import json
 
 
 # Create your views here.
@@ -81,7 +81,6 @@ def registered_person(request):
 
 	if not serializer_person.is_valid():
 		return JsonResponse(serializer_person.errors, status=400)
-
 
 	#Al momento de guardar en base seteamos la ficha medica y la diocesis
 	serializer_person.save(medical_record=serializer_medical.save(),diocesis = resp.diocesis, estado = Estado.objects.get(pk=INIT))
