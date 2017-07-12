@@ -25,8 +25,8 @@ services:
 
   web:
     build: ./api
-    #command: python manage.py runserver 0.0.0.0:8000
-    command: gunicorn api.wsgi -b 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
+    #command: gunicorn api.wsgi -b 0.0.0.0:8000
     volumes:
       - ./api:/webserver
       - ./static:/static
