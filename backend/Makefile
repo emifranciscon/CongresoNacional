@@ -26,7 +26,7 @@ init_db:
 	docker-compose run web python manage.py createsuperuser
 
 poblate_db:
-		docker-compose run web python manage.py shell < script_carga.py
+	docker-compose run web python manage.py shell < script_carga.py
 
 static:
 	docker-compose run web python manage.py collectstatic

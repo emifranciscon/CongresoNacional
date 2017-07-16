@@ -11,7 +11,7 @@
           </div>
       </div>
     </div>
-    <label class="col-sm-4 control-label" for="diocesis" required=""> Peso:</label>
+    <label class="col-sm-4 control-label" for="diocesis" required=""> Peso(Kg):</label>
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <label class="col-sm-4 control-label" for="diocesis"> Altura:</label>
+    <label class="col-sm-4 control-label" for="diocesis"> Altura(Cm):</label>
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
@@ -27,11 +27,22 @@
         </div>
       </div>
     </div>
-    <label class="col-sm-4 control-label" for="diocesis"> Grupo sanguineo:</label>
+    <label class="col-sm-4 control-label" for="diocesis"> Grupo sanguíneo:</label>
     <div class="form-group">
       <div class="row">
         <div class="col-md-6">
-          <input name="grupo_sanguineo" type="text" class="form-control" data-parsley-maxlength="50" required="">
+          <label>Talle de Remera *</label>
+          <select name="grupo_sanguineo" class="form-control" required="">
+            <option value="">Seleccione un grupo sanguíneo..</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="0+">0+</option>
+            <option value="0-">0-</option>
+          </select>
         </div>
       </div>
     </div>

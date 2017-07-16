@@ -10,45 +10,6 @@ $(document).ready(function() {
     return size;
   };
 
-  function tableCreate() {
-    $("#table").remove()
-
-    var cabecera = [
-      "Nombre",
-      "Apellido",
-      "Documento",
-      "Diocesis",
-      "Estado",
-      "Email"
-    ]
-
-    var tbl = document.createElement('table');
-    tbl.setAttribute("class", "table")
-    tbl.setAttribute("id", "table")
-
-    var tbl_head = document.createElement('thead');
-    var tr = document.createElement('tr');
-
-    for (var i = 0; i < cabecera.length; i++) {
-      th = document.createElement('th');
-      text = document.createTextNode(cabecera[i])
-      th.appendChild(text)
-      tr.appendChild(th)
-    }
-
-    tbl_head.appendChild(tr)
-
-    var tbl_body = document.createElement('tbody');
-    tbl_body.setAttribute("id", 'table-content')
-
-    tbl.appendChild(tbl_head)
-    tbl.appendChild(tbl_body)
-
-    //console.log(tbl)
-    document.getElementById('container-table').appendChild(tbl)
-
-  }
-
   function getRow(data) {
     var table = document.getElementById('table-content') // Create a <tr> node
     $("#table-content tr").remove();
@@ -77,6 +38,7 @@ $(document).ready(function() {
       input = document.createElement("input");
       input.setAttribute("type", "checkbox")
       input.setAttribute("class", "checkthis")
+      input.setAttribute("name", "checkgeneral")
 
       column.appendChild(input)
       row.appendChild(column)
@@ -249,12 +211,12 @@ $(document).ready(function() {
   function applyEventTable() {
     $("#table #checkall").click(function() {
       if ($("#table #checkall").is(':checked')) {
-        $("#table input[type=checkbox]").each(function() {
+        $("#table input[name='checkgeneral']").each(function() {
           $(this).prop("checked", true);
         });
 
       } else {
-        $("#table input[type=checkbox]").each(function() {
+        $("#table input[name='checkgeneral']").each(function() {
           $(this).prop("checked", false);
         });
       }

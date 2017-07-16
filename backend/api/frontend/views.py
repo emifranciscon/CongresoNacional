@@ -31,25 +31,6 @@ def home(request):
 
 
 
-@login_required(login_url = "/login/")
-def inscripcion(request):
-	template = 'inscripcion.html'
-	es_diocesis_vm = False
-	try:
-		resp = Responsable.objects.get(user=request.user.id)
-		dioc = resp.diocesis
-		print(dioc)
-		if dioc.id == 13 or dioc.nombre == 'Villa Maria':
-			es_diocesis_vm = True
-	except Exception as e:
-		print(e)
-
-	ctx = {'es_diocesis_vm':es_diocesis_vm}
-	return render_to_response(template,ctx,
-        context_instance = RequestContext(request)
-    )
-
-
 
 @login_required(login_url = "/login/")
 def inscripcion_aux(request):
@@ -71,6 +52,9 @@ def inscripcion_aux(request):
 
 @login_required(login_url = "/login/")
 def work_view(request):
+	if str(request.user) not in ['egmartin','admin','ebolatti','nguillen','avaldez']:
+		return HttpResponseRedirect("/inicio/")
+
 	template = 'work_view.html'
 	return render(request,template)
 

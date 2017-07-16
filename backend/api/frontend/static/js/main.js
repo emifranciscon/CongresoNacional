@@ -64,6 +64,8 @@ $(document).ready(function() {
 
           if (resp.hasOwnProperty('num_doc') && resp.num_doc[0] === "Ya existe un/a person con este/a num doc.") {
             msgCustom("El documento ingresado, ya esta registrado...", function() {})
+          }else{
+            msgCustom(jqXHR.responseText, function() {})
           }
 
         } else if (status === '409') {
@@ -72,7 +74,7 @@ $(document).ready(function() {
           msgCustom("Ah ocurrido un problema, vuelve  a intentar mas tarde. Si el problema persiste, por favor contactar con el administrador del sitio.", function() {})
         }
 
-        console.log("status: %d -- msg: %s", jqXHR.status, jqXHR.responseText)
+        //console.log("status: %d -- msg: %s", jqXHR.status, jqXHR.responseText)
       },
       contentType: 'application/json',
       dataType: 'json'
