@@ -22,13 +22,13 @@ class Diocesis(models.Model):
     cupo = models.PositiveIntegerField(unique=False, null = False , blank = False)
 
     def __str__(self):
-        return "{0}".format(self.nombre)
+        return "{0} - cupo: {1}".format(self.nombre,self.cupo)
 
 
 
 class Estado(models.Model):
     nombre = models.CharField(max_length = 100, null = False , blank = False)
-    descripcion = models.CharField(max_length = 100, null = False , blank = False)
+    descripcion = models.CharField(max_length = 100, null = True , blank = True)
 
     def __str__(self):
         return "{0}".format(self.nombre)
@@ -41,7 +41,7 @@ class Responsable(models.Model):
     diocesis = models.ForeignKey(Diocesis)
 
     def __str__(self):
-        return "{0},{1} - Diocesis: {2}".format(self.apellido,self.nombre,self.diocesis)
+        return "{0},{1} - Diocesis: {2} - User: {3}".format(self.apellido,self.nombre,self.diocesis,self.user)
 
 
 
@@ -106,7 +106,8 @@ class FichaMedica(models.Model):
     hospital_derivacion = models.CharField(max_length = 500, null = True , blank = True)
     aclaracion = models.CharField(max_length = 500, null = True , blank = True)
 
-
+    def __str__(self):
+        return "{0}".format(self.pk)
 
 class Person(models.Model):
     TALLES = (
@@ -139,3 +140,6 @@ class Person(models.Model):
     diocesis = models.ForeignKey(Diocesis)
     estado = models.ForeignKey(Estado)
     detalle_dioc = models.ForeignKey(DetalleDiocesis, null=True, blank=True)
+
+    def __str__(self):
+        return "{0},{1} - Doc: {2}".format(self.apellido,self.nombre,self.num_doc)

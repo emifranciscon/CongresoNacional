@@ -6,16 +6,20 @@ from person.models import Person, Diocesis, Responsable, Responsable, FichaMedic
 
 
 class PersonAdmin(admin.ModelAdmin):
-	list_display = ('nombre', 'apellido')
+	list_display = ('nombre', 'apellido','num_doc','medical_record')
 
 class DiocesisAdmin(admin.ModelAdmin):
 	list_display = ('nombre','cupo')
 
 class ResponsableAdmin(admin.ModelAdmin):
-	list_display = ('nombre','apellido','diocesis')
+	list_display = ('nombre','apellido','diocesis','user')
 
 class FichaMedicaAdmin(admin.ModelAdmin):
-	list_display = ('id',)
+	list_display = ('id','person')
+
+	def person(self, obj):
+		resp = Person.objects.get(medical_record=obj.id)
+		return resp
 
 
 
