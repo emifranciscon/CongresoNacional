@@ -28,5 +28,11 @@ init_db:
 poblate_db:
 	docker-compose run web python manage.py shell < script_carga.py
 
-static:
+static_files:
 	docker-compose run web python manage.py collectstatic
+
+deploy:
+	docker-compose stop
+	git pull
+	docker-compose rm -f
+	docker-compose up &

@@ -1,14 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.conf import settings
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from person.models import Person, FichaMedica, Diocesis, Estado, Responsable
 from person.filters import PersonFilter
 from person.serializers import PersonSerializer, FichaMedicaSerializer, DiocesisSerializer, EstadoSerializer
-from rest_framework import viewsets,filters
+from rest_framework import viewsets,filters,mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
-
 from django.db import transaction
 import json
 
@@ -16,7 +16,7 @@ import json
 # Create your views here.
 INIT = 1
 
-class PersonViewSet(viewsets.ModelViewSet):
+class PersonViewSet(mixins.ListModelMixin,viewsets.GenericViewSet):
 	serializer_class = PersonSerializer
 	queryset = Person.objects.all()
 	lookup_field = 'id'
@@ -24,11 +24,12 @@ class PersonViewSet(viewsets.ModelViewSet):
 	filter_class = PersonFilter
 	ordering_fields = ('apellido','nombre')
 
+"""
 class FichaMedicaViewSet(viewsets.ModelViewSet):
 	serializer_class = FichaMedicaSerializer
 	queryset = FichaMedica.objects.all()
 	lookup_field = 'id'
-
+"""
 
 
 @api_view(['GET'])
@@ -46,6 +47,8 @@ def lista_estados(request):
 
 @api_view(['PUT'])
 def update_persons(request):
+	if str(request.user) not in settings.ADMINS_USERS:
+		return HttpResponseForbidden()
 	personsToUpdate = request.data["persons"]
 	newState = request.data["state"]
 	observaciones = request.data["observaciones"]
@@ -60,6 +63,8 @@ def update_persons(request):
 
 @api_view(['PUT'])
 def update_pago(request):
+	if str(request.user) not in settings.ADMINS_USERS:
+		return HttpResponseForbidden()
 	personsToUpdate = int(request.data["id_person"])
 	newState = request.data["value"]
 	if newState == 'true':

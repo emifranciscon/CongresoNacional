@@ -42,7 +42,7 @@
               <input id="num_doc" type="text" placeholder="Ingresar numero de documento aqui.." class="form-control" required="" data-parsley-maxlength="9" data-parsley-type="digits" data-parsley-trigger="keyup"  data-parsley-validation-threshold="1">
             </div>
             <div class="col-sm-6 form-group">
-              <label>Fecha nacimiento *</label>
+              <label>Fecha nacimiento(aaaa-mm-dd) *</label>
               <input id="fecha_nacimiento" type="text" placeholder="aaaa-mm-dd" class="form-control datepicker" required="">
             </div>
           </div>
@@ -72,7 +72,7 @@
               <input id="num_eslabon" type="text" placeholder="Ingresar numero aqui.." class="form-control" required="" data-parsley-maxlength="3" data-parsley-type="digits" data-parsley-trigger="keyup"  data-parsley-validation-threshold="1">
             </div>
             <div class="col-sm-6 form-group">
-              <label>Fecha Eslabón *</label>
+              <label>Fecha Eslabón(aaaa-mm-dd) *</label>
               <input id="fecha_eslabon" type="text" placeholder="aaaa-mm-dd" class="form-control datepicker" required="">
             </div>
           </div>
@@ -109,7 +109,6 @@
           <hr />
           <a href="{% url 'home_view' %}" class="btn btn-lg btn-info" role="button"><span class="glyphicon glyphicon-home"></span> Inicio</a>
           <button id="btn-siguiente" value="validate" type="submit" class="btn btn-lg btn-success"><i class="fa fa-arrow-right" aria-hidden="true"></i> Siguiente</button>
-
         </div>
       </form>
     </div>

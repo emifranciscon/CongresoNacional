@@ -1,4 +1,5 @@
 import json
+from django.conf import settings
 from django.shortcuts import render, render_to_response
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response,get_object_or_404 , render
@@ -52,7 +53,7 @@ def inscripcion_aux(request):
 
 @login_required(login_url = "/login/")
 def work_view(request):
-	if str(request.user) not in ['egmartin','admin','ebolatti','nguillen','avaldez']:
+	if str(request.user) not in settings.ADMINS_USERS:
 		return HttpResponseRedirect("/inicio/")
 
 	template = 'work_view.html'

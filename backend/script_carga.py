@@ -8,8 +8,6 @@
 print("Poblando Base de datos")
 
 from person.models import Estado
-estado4 = Estado(pk = 4, nombre = 'Eliminado', descripcion='descripcion')
-estado4.save()
 estado3 = Estado(pk = 3, nombre = 'Pagado', descripcion='descripcion')
 estado3.save()
 estado2 = Estado(pk = 2, nombre = 'Inscripto', descripcion='descripcion')

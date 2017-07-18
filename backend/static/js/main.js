@@ -6,6 +6,12 @@ $(document).ready(function() {
     showForm('#id-container-dataperson');
   });
 
+  $('#btn-test').click(function(event) {
+    event.preventDefault();
+    post()
+  });
+
+
   $('#btn-reset').click(function(event) {
     event.preventDefault();
     register()
@@ -114,8 +120,9 @@ $(document).ready(function() {
     var radioButtons = $('#formDatosMedicos input[type=radio]:checked');
     var textsArea = $('#formDatosMedicos textarea');
     var textsSimple = $('#formDatosMedicos input[type=text]');
+    var comboSelect = $('#formDatosMedicos select');
 
-    var merge = radioButtons.add(textsArea).add(textsSimple);
+    var merge = radioButtons.add(textsArea).add(textsSimple).add(comboSelect);
 
     var obj = {}
     $(merge).each(function(index) {
