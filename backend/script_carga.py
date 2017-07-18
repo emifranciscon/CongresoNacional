@@ -4,6 +4,11 @@
 
 
 #./manage.py shell < script_carga.py
+from person.models import Diocesis,Responsable,Estado
+from django.contrib.auth.models import User
+import unicodedata
+from django.db.utils import IntegrityError
+
 
 print("Poblando Base de datos")
 
@@ -36,11 +41,9 @@ diocesis8 = Diocesis(pk = 8, nombre = 'San Juan', cupo = 50)
 diocesis8.save()
 diocesis9 = Diocesis(pk = 9, nombre = 'San Luis', cupo = 50)
 diocesis9.save()
-diocesis10 = Diocesis(pk = 10, nombre = 'Catamarca', cupo = 50)
-diocesis10.save()
 diocesis11 = Diocesis(pk = 11, nombre = 'Santiago del Estero', cupo = 50)
 diocesis11.save()
-diocesis12 = Diocesis(pk = 12, nombre = 'Tucumán', cupo = 50)
+diocesis12 = Diocesis(pk = 12, nombre = 'Tucumán', cupo = 60)
 diocesis12.save()
 diocesis13 = Diocesis(pk = 13, nombre = 'Villa Maria', cupo = 50)
 diocesis13.save()
@@ -50,3 +53,31 @@ diocesis15 = Diocesis(pk = 15, nombre = 'San Rafael', cupo = 50)
 diocesis15.save()
 diocesis16 = Diocesis(pk = 16, nombre = 'Rosario', cupo = 50)
 diocesis16.save()
+
+
+def elimina_tildes(s):
+   return ''.join((c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn'))
+
+
+
+def init():
+    for dio in Diocesis.objects.all():
+        data = dio.nombre.lower().strip()
+        username = elimina_tildes(data).replace(' ', '')
+        password = User.objects.make_random_password()
+        user = None
+        try:
+            user=User.objects.create_user(username, password=password)
+            user.save()
+            resp=Responsable(nombre=username,apellido=username,user=user,diocesis=dio)
+            resp.save()
+            print('---------------------------\n')
+            print('Diocesis: {0} \n'.format(dio.nombre))
+            print('username: {0} \n'.format(username))
+            print('password: {0} \n'.format(password))
+            print('---------------------------\n')
+        except IntegrityError as e:
+            print('El user {0} ya existe...'.format(username))
+
+
+init()
