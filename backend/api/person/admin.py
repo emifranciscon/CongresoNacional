@@ -1,5 +1,5 @@
 from django.contrib import admin
-from person.models import Person, Diocesis, Responsable, Responsable, FichaMedica, Estado
+from person.models import Person, Diocesis, Responsable, Responsable, FichaMedica, Estado, Comision
 
 
 # Register your models here.
@@ -26,9 +26,12 @@ class FichaMedicaAdmin(admin.ModelAdmin):
 class EstadoAdmin(admin.ModelAdmin):
 	list_display = ('nombre',)
 
+class ComisionAdmin(admin.ModelAdmin):
+	list_display = ('nombre',)
 
 admin.site.register(Person, PersonAdmin)
 admin.site.register(Diocesis, DiocesisAdmin)
 admin.site.register(Responsable, ResponsableAdmin)
 admin.site.register(FichaMedica, FichaMedicaAdmin)
 admin.site.register(Estado, EstadoAdmin)
+admin.site.register(Comision, ComisionAdmin)

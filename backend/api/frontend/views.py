@@ -63,6 +63,7 @@ def work_view(request):
 
 def login_view(request):
     template = "login.html"
+    print("path:{0}".format(request.path))
     mensaje = ""
     if request.user.is_authenticated():
         return HttpResponseRedirect("/")

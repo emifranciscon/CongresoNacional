@@ -87,7 +87,21 @@
             </div>
           </div>
 
-
+          {% if es_diocesis_vm  %}
+          <div class="row">
+            <div class="col-sm-6 form-group">
+              <label>Comisión *</label>
+              <select class="form-control" id="comision" required="">
+              </select>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label>Detalle inscripción</label>
+              <textarea id="detalle_inscripcion" rows="3" class="form-control" data-parsley-maxlength="1000" ></textarea>
+            </div>
+          </div>
+          {% else  %}
+          {% endif  %}
+          
           <div class="row">
             <div class="col-sm-6 form-group">
               <label>Talle de Remera *</label>

@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
-from person.models import Person, FichaMedica, Diocesis, Estado, Responsable
+from person.models import Person, FichaMedica, Diocesis, Estado, Responsable, Comision, DetalleDiocesis
 from person.filters import PersonFilter
-from person.serializers import PersonSerializer, FichaMedicaSerializer, DiocesisSerializer, EstadoSerializer
+from person.serializers import PersonSerializer, FichaMedicaSerializer, DiocesisSerializer, EstadoSerializer, ComisionSerializer
 from rest_framework import viewsets,filters,mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -43,6 +43,12 @@ def lista_diocesis(request):
 def lista_estados(request):
     estados = Estado.objects.all()
     serializer = EstadoSerializer(estados, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def lista_comisiones(request):
+    comisiones = Comision.objects.all()
+    serializer = ComisionSerializer(comisiones, many=True)
     return Response(serializer.data)
 
 @api_view(['PUT'])
@@ -101,7 +107,16 @@ def registered_person(request):
 	if not serializer_person.is_valid():
 		return JsonResponse(serializer_person.errors, status=400)
 
-	#Al momento de guardar en base seteamos la ficha medica y la diocesis
-	serializer_person.save(medical_record=serializer_medical.save(),diocesis = resp.diocesis, estado = Estado.objects.get(pk=INIT))
+	comision = request.data["data_person"].get('comision')
+	descripcion_com = request.data["data_person"].get('detalle_inscripcion')
+	if comision is not None:
+		det = DetalleDiocesis(comision = Comision.objects.get(pk=comision), descripcion = str(descripcion_com))
+		det.save()
+		#Al momento de guardar en base seteamos la ficha medica y la diocesis
+		print("Comision: {0}, descripcion_com: {1}, det: {2} ".format(comision,descripcion_com,det))
+		serializer_person.save(medical_record=serializer_medical.save(),diocesis = resp.diocesis, estado = Estado.objects.get(pk=INIT), detalle_dioc = det)
+	else:
+		serializer_person.save(medical_record=serializer_medical.save(),diocesis = resp.diocesis, estado = Estado.objects.get(pk=INIT))
+
 
 	return JsonResponse({"id_person":serializer_person.data["id"]}, status=201)

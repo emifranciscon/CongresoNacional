@@ -147,4 +147,32 @@ $(document).ready(function() {
     $(idForm).css({display: "block"});
   }
 
+
+
+  function loadData(id_element, uri) {
+    var combo = document.getElementById(id_element)
+    $.ajax({method: "GET", url: uri}).done(function(data) {
+
+      option = document.createElement("option");
+      text_option = document.createTextNode("Seleccione una opción");
+      option.appendChild(text_option);
+      option.setAttribute("value", '');
+      combo.appendChild(option);
+
+      for (var i = 0; i < data.length; i++) {
+        option = document.createElement("option");
+        text_option = document.createTextNode(data[i]['nombre']);
+        option.appendChild(text_option);
+        option.setAttribute("value", data[i]['id'])
+        combo.appendChild(option);
+      }
+
+
+    })
+  }
+  if(es_diocesis_vm){
+    loadData('comision', '/api/comisiones/')
+  }
+
+
 });

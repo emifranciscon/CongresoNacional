@@ -15,7 +15,7 @@ class DetalleDiocesis(models.Model):
     descripcion = models.CharField(max_length = 1000, null = True , blank = True)
 
     def __str__(self):
-        return "{0}".format(self.nombre)
+        return "{0}".format(self.comision.nombre)
 
 class Diocesis(models.Model):
     nombre = models.CharField(max_length = 100, null = False , blank = False)
