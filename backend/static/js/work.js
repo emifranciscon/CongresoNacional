@@ -177,6 +177,9 @@ $(document).ready(function() {
         combo.appendChild(option);
       }
 
+      $(combo).selectpicker('refresh');
+
+
     })
   }
 

@@ -6,12 +6,6 @@ $(document).ready(function() {
     showForm('#id-container-dataperson');
   });
 
-  $('#btn-test').click(function(event) {
-    event.preventDefault();
-    post()
-  });
-
-
   $('#btn-reset').click(function(event) {
     event.preventDefault();
     register()
@@ -120,9 +114,8 @@ $(document).ready(function() {
     var radioButtons = $('#formDatosMedicos input[type=radio]:checked');
     var textsArea = $('#formDatosMedicos textarea');
     var textsSimple = $('#formDatosMedicos input[type=text]');
-    var comboSelect = $('#formDatosMedicos select');
 
-    var merge = radioButtons.add(textsArea).add(textsSimple).add(comboSelect);
+    var merge = radioButtons.add(textsArea).add(textsSimple);
 
     var obj = {}
     $(merge).each(function(index) {
@@ -146,33 +139,5 @@ $(document).ready(function() {
   function showForm(idForm) {
     $(idForm).css({display: "block"});
   }
-
-
-
-  function loadData(id_element, uri) {
-    var combo = document.getElementById(id_element)
-    $.ajax({method: "GET", url: uri}).done(function(data) {
-
-      option = document.createElement("option");
-      text_option = document.createTextNode("Seleccione una opción");
-      option.appendChild(text_option);
-      option.setAttribute("value", '');
-      combo.appendChild(option);
-
-      for (var i = 0; i < data.length; i++) {
-        option = document.createElement("option");
-        text_option = document.createTextNode(data[i]['nombre']);
-        option.appendChild(text_option);
-        option.setAttribute("value", data[i]['id'])
-        combo.appendChild(option);
-      }
-
-
-    })
-  }
-  if(es_diocesis_vm){
-    loadData('comision', '/api/comisiones/')
-  }
-
 
 });
