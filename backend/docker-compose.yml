@@ -9,6 +9,8 @@ services:
       - POSTGRES_USER=example
       - POSTGRES_PASSWORD=secret
       - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data/pgdata
 
@@ -29,8 +31,8 @@ services:
     volumes:
       - ./api:/webserver
       - ./static:/static
-    #ports:
-    #  - "8000:8000"
+    ports:
+      - "8000:8000"
     expose:
       - "8000"
     depends_on:

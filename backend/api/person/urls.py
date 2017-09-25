@@ -11,6 +11,7 @@ router.register(r'person', PersonViewSet)
 
 urlpatterns = [
     url(r'^',include(router.urls)),
+    url(r'^comidas', views.lista_comidas),
     url(r'^comisiones', views.lista_comisiones),
     url(r'^diocesis', views.lista_diocesis),
     url(r'^estados', views.lista_estados),

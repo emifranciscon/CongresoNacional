@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from person.models import FichaMedica, Diocesis, Person, Estado, Comision
+from person.models import FichaMedica, Diocesis, Person, Estado, Comision, Comidas
 
 
 class ComisionStringField(serializers.RelatedField):
@@ -40,6 +40,11 @@ class EstadoSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 class ComisionSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Comision
+		fields = '__all__'
+
+class ComidasSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Comision
 		fields = '__all__'

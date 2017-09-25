@@ -1,5 +1,23 @@
 $(document).ready(function() {
 
+  $( "#tipo_asistencia" ).change(function() {
+    event.preventDefault();
+    console.log()
+    if($(this).val() === 'SERVIDOR'){
+      $('#wrapper').show();
+      $('#comision').attr('required','')
+      $('#first_quiere_material').attr('required','')
+      $('#first_duerme_en_universidad').attr('required','')
+      $('#comidas').attr('required','')
+    }else{
+      $('#comision').removeAttr('required')
+      $('#first_quiere_material').removeAttr('required')
+      $('#first_duerme_en_universidad').removeAttr('required')
+      $('#comidas').removeAttr('required')
+      $('#wrapper').hide();
+    }
+  });
+
   $('#btn-atras').click(function(event) {
     event.preventDefault();
     hideForm('#id-container-fichamed');
@@ -9,6 +27,11 @@ $(document).ready(function() {
   $('#btn-reset').click(function(event) {
     event.preventDefault();
     register()
+  });
+
+  $('#btn-test').click(function(event) {
+    event.preventDefault();
+    console.log(JSON.stringify(getObjetFromFormAux()))
   });
 
   $('#main-form').parsley().on('field:validated', function() {
@@ -45,7 +68,6 @@ $(document).ready(function() {
       "medical_record": getObjetFromFormAux()
     }
 
-    console.log(JSON.stringify(dataToPost))
 
     $.ajax({
 
@@ -107,6 +129,15 @@ $(document).ready(function() {
 
     });
 
+    $("#main-form div .row div input[type=radio]:checked").each(function(index) {
+      value = $(this).val() === 'Si'
+        ? true
+        : false;
+
+      obj[$(this).attr("name")] = value
+
+    });
+
     return obj
   }
 
@@ -114,8 +145,9 @@ $(document).ready(function() {
     var radioButtons = $('#formDatosMedicos input[type=radio]:checked');
     var textsArea = $('#formDatosMedicos textarea');
     var textsSimple = $('#formDatosMedicos input[type=text]');
+    var combos = $('#formDatosMedicos select');
 
-    var merge = radioButtons.add(textsArea).add(textsSimple);
+    var merge = radioButtons.add(textsArea).add(textsSimple).add(combos);
 
     var obj = {}
     $(merge).each(function(index) {
@@ -139,5 +171,31 @@ $(document).ready(function() {
   function showForm(idForm) {
     $(idForm).css({display: "block"});
   }
+
+  function loadData(id_element, uri) {
+    var combo = document.getElementById(id_element)
+    $.ajax({method: "GET", url: uri}).done(function(data) {
+
+      option = document.createElement("option");
+      text_option = document.createTextNode("Todos");
+      option.appendChild(text_option);
+      option.setAttribute("value", '');
+      //combo.appendChild(option);
+
+      for (var i = 0; i < data.length; i++) {
+        option = document.createElement("option");
+        text_option = document.createTextNode(data[i]['nombre']);
+        option.appendChild(text_option);
+        option.setAttribute("value", data[i]['id'])
+        combo.appendChild(option);
+      }
+
+      $(combo).selectpicker('refresh');
+
+
+    })
+  }
+  loadData('comision', '/api/comisiones/')
+  loadData('comidas', '/api/comidas/')
 
 });

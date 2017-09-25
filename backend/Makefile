@@ -21,9 +21,10 @@ rebuild_web:
 	docker-compose build
 
 init_db:
-	docker-compose run web python manage.py makemigrations
-	docker-compose run web python manage.py migrate
-	docker-compose run web python manage.py createsuperuser
+	docker-compose  exec web bash -c "python manage.py makemigrations"
+	docker-compose  exec web bash -c "python manage.py migrate"
+	docker-compose  exec web bash -c "python manage.py createsuperuser"
+
 
 poblate_db:
 	docker-compose run web python manage.py shell < script_carga.py > report.txt

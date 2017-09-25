@@ -15,10 +15,12 @@
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
 
 
 {% endblock %}
 {% block content %}
+<!--<button id="btn-test" class="btn btn-lg btn-info"><i class="fa fa-arrow-left" aria-hidden="true"></i> test</button> -->
 
 <div id="id-container-dataperson" class="container" >
   <h3 class="well">Datos personales</h3>
@@ -90,22 +92,61 @@
           {% if es_diocesis_vm  %}
           <div class="row">
             <div class="col-sm-6 form-group">
+              <label>Tipo inscripción *</label>
+              <select class="form-control selectpicker" id="tipo_asistencia">
+                <option value="PARTICIPANTE">PARTICIPANTE</option>
+                <option value="SERVIDOR">SERVIDOR</option>
+              </select>
+            </div>
+            <div id="wrapper" style="display:none">
+
+
+            <div class="col-sm-6 form-group">
               <label>Comisión *</label>
-              <select class="form-control" id="comision" required="">
+              <select class="form-control selectpicker" title="Selecciona en la comision que participas..."  id="comision" >
               </select>
             </div>
             <div class="col-sm-6 form-group">
               <label>Detalle inscripción</label>
               <textarea id="detalle_inscripcion" rows="3" class="form-control" data-parsley-maxlength="1000" ></textarea>
             </div>
+            <div class="col-sm-6 form-group">
+              <label>¿Vas a dormir en la universidad? *</label>
+              <div class="row">
+                  <div  class="col-md-2">
+                    Si <input id='first_duerme_en_universidad' name="duerme_en_universidad" type="radio" value="Si"  >
+                  </div>
+                  <div  class="col-md-2">
+                    No <input name="duerme_en_universidad" type="radio" value="No"  >
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label>¿Vas a querer el material del encuentro? *</label>
+              <div class="row">
+                  <div  class="col-md-2">
+                    Si <input id='first_quiere_material' name="quiere_material" type="radio" value="Si"  >
+                  </div>
+                  <div  class="col-md-2">
+                    No <input name="quiere_material" type="radio" value="No"  >
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label>Selecciona las comidas que consumirás *</label>
+              <select id="comidas" class="form-control selectpicker" title="Selecciona las comidas que consumirás..."  multiple>
+              </select>
+            </div>
           </div>
+          </div>
+
           {% else  %}
           {% endif  %}
-          
+
           <div class="row">
             <div class="col-sm-6 form-group">
               <label>Talle de Remera *</label>
-              <select class="form-control" id="talle" required="">
+              <select class="form-control selectpicker" id="talle" required="">
                 <option value="">Seleccione un talle..</option>
                 <option value="NO">No quiero remera</option>
                 <option value="XS">XS</option>
@@ -173,6 +214,8 @@
     <!-- Datepicker script -->
     <script type="text/javascript" src="{% static "js/datepicker/bootstrap-datepicker.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/datepicker/bootstrap-datepicker.es.min.js" %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
     <script type="text/javascript">
         var es_diocesis_vm = "{% autoescape off %}{{ es_diocesis_vm }}{% endautoescape %}"
