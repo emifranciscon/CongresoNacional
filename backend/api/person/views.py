@@ -101,10 +101,16 @@ def registered_person(request):
 
     # Validacion cupo
     resp = Responsable.objects.get(user=request.user.id)
-    count_registered = Person.objects.filter(diocesis=resp.diocesis).count()
+    tipo_asistencia = request.data["data_person"].get('tipo_asistencia')
     count_cupo = resp.diocesis.cupo
-    # print("count_registered: {0} - count_cupo: {1}".format(count_registered,count_cupo))
+    if tipo_asistencia is not None and str(tipo_asistencia) == 'SERVIDOR':
+        count_cupo = 100000
+    if resp.diocesis.id == 13 or resp.diocesis.nombre == 'Villa Maria':
+        count_registered = Person.objects.filter(diocesis=resp.diocesis, detalle_dioc__tipo_asistencia='PARTICIPANTE').count()
+    else:
+        count_registered = Person.objects.filter(diocesis=resp.diocesis).count()
 
+    # print("count_registered: {0} - count_cupo: {1}".format(count_registered,count_cupo))
     if count_registered >= count_cupo:
         return JsonResponse({"msg": "llego al limite de cupo por diocesis"}, status=409)
     # Fin validacion cupo

@@ -17,7 +17,12 @@ def home(request):
 	template = 'home.html'
 	###Validacion cupo
 	resp = Responsable.objects.get(user=request.user.id)
-	persons = Person.objects.filter(diocesis=resp.diocesis)
+	es_diocesis_vm = False
+	if resp.diocesis.id == 13 or resp.diocesis.nombre == 'Villa Maria':
+		persons = Person.objects.filter(diocesis=resp.diocesis, detalle_dioc__tipo_asistencia='PARTICIPANTE')
+		es_diocesis_vm = True
+	else:
+		persons = Person.objects.filter(diocesis=resp.diocesis)
 	registrados = persons.count()
 	dioc = resp.diocesis
 	cupo_total = dioc.cupo
@@ -26,8 +31,7 @@ def home(request):
 	if registrados >= cupo_total:
 		isLimited = True
 
-	print(isLimited)
-	ctx = {'diocesis':dioc.nombre, 'persons':persons, 'cupo_total':cupo_total, 'cupo_disponible': cupo_disponible, 'isLimited':isLimited }
+	ctx = {'diocesis':dioc.nombre, 'persons':persons, 'cupo_total':cupo_total, 'cupo_disponible': cupo_disponible, 'isLimited':isLimited, 'es_diocesis_vm':es_diocesis_vm }
 	return render_to_response(template,ctx)
 
 
@@ -40,7 +44,6 @@ def inscripcion_aux(request):
 	try:
 		resp = Responsable.objects.get(user=request.user.id)
 		dioc = resp.diocesis
-		print(dioc)
 		if dioc.id == 13 or dioc.nombre == 'Villa Maria':
 			es_diocesis_vm = True
 	except Exception as e:
