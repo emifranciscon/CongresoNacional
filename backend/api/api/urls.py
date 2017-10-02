@@ -26,12 +26,12 @@ from frontend import views
 
 urlpatterns = [
     url(r'^inicio/', views.home, name='home_view'),
-    url(r'^inscripcion/', views.inscripcion_aux,name='inscripcion_view'),
+    url(r'^inscripcion/', views.inscripcion_aux, name='inscripcion_view'),
     url(r'^work/', views.work_view),
+    url(r'^report/', views.html_to_pdf_view, name='report_view'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.login_view, name='login_view'),
     url(r'^logout/$', views.logout_view, name='logaut_view'),
     url(r'^api/',include('person.urls')),
     url(r'', RedirectView.as_view(url='/inicio/')),
-
 ]

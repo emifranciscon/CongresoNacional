@@ -32,11 +32,14 @@
       <select id="combo-est" class="selectpicker" title="Seleccione un estado...">
         </select>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <button id='btn-buscar' type="button" class="btn btn-primary" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Buscar</button>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <button id='btn-acciones' type="button" class="btn btn-info" style="width: 100%;"><span class="glyphicon glyphicon-pencil"></span> Acciones</button>
+    </div>
+    <div class="col-md-2">
+      <a href="{% url 'report_view' %}" target="_blank" class="btn btn-info" style="width: 100%;" role="button"><span class="glyphicon glyphicon-plus"></span> Reporte</a>
     </div>
   </div>
   <hr />

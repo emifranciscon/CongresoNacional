@@ -10,6 +10,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from django.contrib.auth.views import *
 from person.models import Responsable, Person
+from django.core.files.storage import FileSystemStorage
+from django.template.loader import render_to_string
+from weasyprint import HTML
+from django.db.models import Count
+from person.models import Person
 # Create your views here.
 
 @login_required(login_url = "/login/")
@@ -94,3 +99,19 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+
+
+
+def html_to_pdf_view(request):
+	query = Person.objects.values('diocesis__nombre').annotate(dcount=Count('diocesis'))
+	html_string = render_to_string('pdf/report.html', {'diocesis': query})
+	html = HTML(string=html_string)
+	html.write_pdf(target='/tmp/report.pdf')
+	fs = FileSystemStorage('/tmp')
+	with fs.open('report.pdf') as pdf:
+		response = HttpResponse(pdf, content_type='application/pdf')
+		response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+		return response
+
+	return response

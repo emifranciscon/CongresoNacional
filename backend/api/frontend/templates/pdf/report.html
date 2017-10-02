@@ -1,0 +1,18 @@
+<html>
+<head>
+  <title>Reporte Diocesis</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reporte</h1>
+  {% for dio in diocesis %}
+    <p>Diocesis: {{ dio.diocesis__nombre }}</p>
+    <p>Cantidad Inscriptos: {{ dio.dcount }}</p>
+  </br>
+  {% endfor %}
+</body>
+</html>
