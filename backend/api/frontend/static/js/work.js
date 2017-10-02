@@ -23,6 +23,7 @@ $(document).ready(function() {
       'fecha_registro',
       'email_personal',
       'tel_personal',
+      'talle',
       'pago_remera',
       'descripcion_registro'
     ];
