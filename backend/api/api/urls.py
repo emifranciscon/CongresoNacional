@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^inscripcion/', views.inscripcion_aux, name='inscripcion_view'),
     url(r'^work/', views.work_view),
     url(r'^report/', views.html_to_pdf_view, name='report_view'),
+    url(r'^report_xls/', views.export_users_xls, name='report_view_xls'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', views.login_view, name='login_view'),
     url(r'^logout/$', views.logout_view, name='logaut_view'),

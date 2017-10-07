@@ -1,4 +1,4 @@
-import json
+import xlwt
 from django.conf import settings
 from django.shortcuts import render, render_to_response
 from django.template.context import RequestContext
@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 from django.template.loader import render_to_string
 from weasyprint import HTML
 from django.db.models import Count
-from person.models import Person
+from person.models import Person, Diocesis
 # Create your views here.
 
 @login_required(login_url = "/login/")
@@ -104,6 +104,8 @@ def logout_view(request):
 
 
 def html_to_pdf_view(request):
+	if str(request.user) not in settings.ADMINS_USERS:
+		return HttpResponseRedirect("/inicio/")
 	query = Person.objects.values('diocesis__nombre').annotate(dcount=Count('diocesis'))
 	html_string = render_to_string('pdf/report.html', {'diocesis': query})
 	html = HTML(string=html_string)
@@ -114,4 +116,48 @@ def html_to_pdf_view(request):
 		response['Content-Disposition'] = 'attachment; filename="report.pdf"'
 		return response
 
+	return response
+
+
+def export_users_xls(request):
+	if str(request.user) not in settings.ADMINS_USERS:
+		return HttpResponseRedirect("/inicio/")
+
+	wb = xlwt.Workbook(encoding='utf-8')
+	ws = wb.add_sheet("Total")
+	row_num = 0
+	font_style = xlwt.XFStyle()
+	font_style.font.bold = True
+	columns = ['Diocesis', "Cantidad inscriptos"]
+	for col_num in range(len(columns)):
+		ws.write(row_num, col_num, columns[col_num], font_style)
+
+	rows = Person.objects.values('diocesis__nombre').annotate(dcount=Count('diocesis')).values_list('diocesis__nombre','dcount')
+	for row in rows:
+		row_num += 1
+		for col_num in range(len(row)):
+			ws.write(row_num, col_num, row[col_num], font_style)
+
+	for diocesis in Diocesis.objects.all():
+		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre')
+		if not rows:
+			continue
+		ws = wb.add_sheet(diocesis.nombre)
+		row_num = 0
+
+		font_style = xlwt.XFStyle()
+		font_style.font.bold = True
+
+		columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado"]
+		for col_num in range(len(columns)):
+			ws.write(row_num, col_num, columns[col_num], font_style)
+
+		for row in rows:
+			row_num += 1
+			for col_num in range(len(row)):
+				ws.write(row_num, col_num, row[col_num], font_style)
+
+	response = HttpResponse(content_type='application/ms-excel')
+	response['Content-Disposition'] = 'attachment; filename="report.xls"'
+	wb.save(response)
 	return response

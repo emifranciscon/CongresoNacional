@@ -189,7 +189,8 @@ $(document).ready(function() {
     $("#table-content tr").each(function() {
       row = $(this)
 
-      checkbox = row.find('input[type=checkbox]')
+      checkbox = row.find('input[name=checkgeneral]')
+      console.log(checkbox)
       if (checkbox.is(":checked")) {
         id_person = row.attr("reference_id");
         listToEdit.push(id_person)
