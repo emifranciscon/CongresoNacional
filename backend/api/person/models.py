@@ -35,7 +35,7 @@ class DetalleDiocesis(models.Model):
     descripcion = models.CharField(max_length=1000, null=True, blank=True)
     duerme_en_universidad = models.BooleanField(default=False)
     quiere_material = models.BooleanField(default=False)
-    comidas = models.ManyToManyField(Comidas, null=True, blank=True)
+    comidas = models.ManyToManyField(Comidas, blank=True)
 
     def __str__(self):
         return "id: {0} Tipo: {1}".format(self.pk, self.tipo_asistencia)
