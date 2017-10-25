@@ -7,6 +7,7 @@ from person.models import Person, Diocesis, Responsable, FichaMedica, Estado, Co
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('pk', 'nombre', 'apellido', 'num_doc', 'medical_record', 'detalle_dioc')
+    search_fields = ['apellido', 'num_doc']
 
 
 class DiocesisAdmin(admin.ModelAdmin):
