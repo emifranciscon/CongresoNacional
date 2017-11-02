@@ -139,7 +139,13 @@ def export_users_xls(request):
 			ws.write(row_num, col_num, row[col_num], font_style)
 
 	for diocesis in Diocesis.objects.all():
-		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro')
+		if diocesis.nombre == 'Villa Maria':
+			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision','detalle_dioc__descripcion')
+			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones", "Tipo asistencia", "comision", "Descripcion diocesis villa maria"]
+		else:
+			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro')
+			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones"]
+
 		if not rows:
 			continue
 		ws = wb.add_sheet(diocesis.nombre)
@@ -148,7 +154,6 @@ def export_users_xls(request):
 		font_style = xlwt.XFStyle()
 		font_style.font.bold = True
 
-		columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones"]
 		for col_num in range(len(columns)):
 			ws.write(row_num, col_num, columns[col_num], font_style)
 
