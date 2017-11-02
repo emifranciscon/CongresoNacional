@@ -40,6 +40,12 @@ class DetalleDiocesis(models.Model):
     def __str__(self):
         return "id: {0} Tipo: {1}".format(self.pk, self.tipo_asistencia)
 
+    def as_comidas(self):
+        resp = ''
+        for comida in self.comidas.all():
+            resp = resp + '[' + str(comida) + ']'
+        return resp + ''
+
 
 class Diocesis(models.Model):
     nombre = models.CharField(max_length=100, null=False, blank=False)
