@@ -142,6 +142,7 @@ def export_users_xls(request):
 		if diocesis.nombre == 'Villa Maria':
 			persons = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
 			comidas = []
+			response = []
 			for person in persons:
 				det = DetalleDiocesis.objects.get(pk=person.detalle_dioc.pk)
 				resp = ''
@@ -149,6 +150,8 @@ def export_users_xls(request):
 					resp = resp + ',' + str(comida) + ','
 					comidas.append(det.pk)
 					comidas.append(resp)
+				response.append(comidas)
+
 
 			ws = wb.add_sheet("detalle_dioc")
 			row_num = 0
@@ -159,7 +162,7 @@ def export_users_xls(request):
 			for col_num in range(len(columns)):
 				ws.write(row_num, col_num, columns[col_num], font_style)
 
-			for row in rows:
+			for row in response:
 				row_num += 1
 				for col_num in range(len(row)):
 					ws.write(row_num, col_num, row[col_num], font_style)
