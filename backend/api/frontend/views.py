@@ -149,9 +149,8 @@ def export_users_xls(request):
 				for comida in det.comidas.all():
 					resp = resp + ',' + str(comida) + ','
 
-				comidas.append(resp)
-				comidas.append(det.pk)
-				response.append(comidas)
+				tup1 = (det.pk, resp);
+				response.append(tup1)
 
 
 			ws = wb.add_sheet("detalle_dioc")
