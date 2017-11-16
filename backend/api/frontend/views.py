@@ -147,9 +147,24 @@ def export_users_xls(request):
 				resp = ''
 				for comida in det.comidas.all():
 					resp = resp + ',' + str(comida) + ','
+					comidas.append(det.pk)
 					comidas.append(resp)
 
-			rows = persons.values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision__nombre','detalle_dioc__descripcion', 'detalle_dioc__duerme_en_universidad', 'detalle_dioc__quiere_material')
+			ws = wb.add_sheet("detalle_dioc")
+			row_num = 0
+
+			font_style = xlwt.XFStyle()
+			font_style.font.bold = True
+			columns = ['id','comidas']
+			for col_num in range(len(columns)):
+				ws.write(row_num, col_num, columns[col_num], font_style)
+
+			for row in rows:
+				row_num += 1
+				for col_num in range(len(row)):
+					ws.write(row_num, col_num, row[col_num], font_style)
+
+			rows = persons.values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision__nombre','detalle_dioc__descripcion', 'detalle_dioc__duerme_en_universidad', 'detalle_dioc__quiere_material','detalle_dioc__comidas')
 			cont = 0
 			for row in rows:
 				row.append(comidas[cont])
