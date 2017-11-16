@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 from django.template.loader import render_to_string
 from weasyprint import HTML
 from django.db.models import Count
-from person.models import Person, Diocesis, Comidas
+from person.models import Person, Diocesis, Comidas, DetalleDiocesis
 # Create your views here.
 
 @login_required(login_url = "/login/")
@@ -143,8 +143,9 @@ def export_users_xls(request):
 			persons = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
 			comidas = []
 			for person in persons:
+				det = DetalleDiocesis.objects.get(pk=person.detalle_dioc.pk)
 				resp = ''
-				for comida in person.comidas.all():
+				for comida in det.comidas.all():
 					resp = resp + ',' + str(comida) + ','
 					comidas.append(resp)
 
