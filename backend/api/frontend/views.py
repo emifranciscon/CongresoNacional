@@ -140,8 +140,8 @@ def export_users_xls(request):
 
 	for diocesis in Diocesis.objects.all():
 		if diocesis.nombre == 'Villa Maria':
-			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision__nombre','detalle_dioc__descripcion', 'detalle_dioc__duerme_en_universidad', 'detalle_dioc__quiere_material')
-			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones", "Tipo asistencia", "comision", "Descripcion diocesis villa maria",'duerme en uni?', 'quiere material?']
+			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision__nombre','detalle_dioc__descripcion', 'detalle_dioc__duerme_en_universidad', 'detalle_dioc__quiere_material','detalle_dioc__comidas')
+			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones", "Tipo asistencia", "comision", "Descripcion diocesis villa maria",'duerme en uni?', 'quiere material?', 'comidas']
 		else:
 			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia')
 			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones"]
