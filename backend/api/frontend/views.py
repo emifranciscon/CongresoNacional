@@ -148,8 +148,9 @@ def export_users_xls(request):
 				resp = ''
 				for comida in det.comidas.all():
 					resp = resp + ',' + str(comida) + ','
-					comidas.append(det.pk)
-					comidas.append(resp)
+
+				comidas.append(resp)
+				comidas.append(det.pk)
 				response.append(comidas)
 
 
