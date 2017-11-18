@@ -149,10 +149,10 @@ def export_users_xls(request):
 	for diocesis in Diocesis.objects.all():
 		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc','fecha_nacimiento')
 
-	for row in rows:
-		row_num += 1
-		for col_num in range(len(row)):
-			ws.write(row_num, col_num, row[col_num], font_style)
+		for row in rows:
+			row_num += 1
+			for col_num in range(len(row)):
+				ws.write(row_num, col_num, row[col_num], font_style)
 
 	for diocesis in Diocesis.objects.all():
 		if diocesis.nombre == 'Villa Maria':
