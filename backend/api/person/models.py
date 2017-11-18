@@ -184,7 +184,3 @@ class Person(models.Model):
             self.nombre,
             self.num_doc
         )
-
-    @property
-    def fecha_nac(self):
-        return str(self.fecha_nacimiento)

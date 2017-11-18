@@ -148,9 +148,13 @@ def export_users_xls(request):
 
 
 	for diocesis in Diocesis.objects.all():
-		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc','fecha_nac')
+		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
+		aux_data = []
+		for person in rows:
+			tup1 = (person.diocesis.nobre, person.nombre, person.apellido, person.num_doc, person.fecha_nacimiento)
+			aux_data.append(tup1)
 
-		for row in rows:
+		for row in aux_data:
 			row_num += 1
 			for col_num in range(len(row)):
 				ws.write(row_num, col_num, row[col_num], font_style)
@@ -166,7 +170,7 @@ def export_users_xls(request):
 				for comida in det.comidas.all():
 					resp = resp + ',' + str(comida) + ','
 
-				tup1 = (det.pk, resp);
+				tup1 = (det.pk, resp)
 				response.append(tup1)
 
 
