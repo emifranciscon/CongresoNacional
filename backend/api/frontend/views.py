@@ -151,7 +151,7 @@ def export_users_xls(request):
 		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
 		aux_data = []
 		for person in rows:
-			tup1 = (person.diocesis.nobre, person.nombre, person.apellido, person.num_doc, person.fecha_nacimiento)
+			tup1 = (person.diocesis.nombre, person.nombre, person.apellido, person.num_doc, person.fecha_nacimiento)
 			aux_data.append(tup1)
 
 		for row in aux_data:
