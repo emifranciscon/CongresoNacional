@@ -16,6 +16,7 @@ from weasyprint import HTML
 from django.db.models import Count
 from person.models import Person, Diocesis, Comidas, DetalleDiocesis
 # Create your views here.
+import datetime
 
 @login_required(login_url = "/login/")
 def home(request):
@@ -147,7 +148,7 @@ def export_users_xls(request):
 		ws.write(row_num, col_num, columns[col_num], font_style)
 
 	for diocesis in Diocesis.objects.all():
-		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc',type('fecha_nacimiento'))
+		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc',datetime.datetime.today())
 
 		for row in rows:
 			row_num += 1
