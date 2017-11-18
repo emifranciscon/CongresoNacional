@@ -138,6 +138,19 @@ def export_users_xls(request):
 		for col_num in range(len(row)):
 			ws.write(row_num, col_num, row[col_num], font_style)
 
+
+	ws = wb.add_sheet("Seguro")
+
+	columns = ['Diocesis','Nombre', "Apellido", 'Documento', 'Fecha Nacimiento']
+	for col_num in range(len(columns)):
+		ws.write(row_num, col_num, columns[col_num], font_style)
+
+	for diocesis in Diocesis.objects.all():
+		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc','fecha_nacimiento')
+
+	for col_num in range(len(columns)):
+		ws.write(row_num, col_num, columns[col_num], font_style)
+
 	for diocesis in Diocesis.objects.all():
 		if diocesis.nombre == 'Villa Maria':
 			persons = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
