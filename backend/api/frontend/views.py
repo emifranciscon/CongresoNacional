@@ -148,7 +148,6 @@ def export_users_xls(request):
 
 	for diocesis in Diocesis.objects.all():
 		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc',str('fecha_nacimiento'))
-		[dt.date() for dt in query.values_list('time_finished', flat=True)]
 
 		for row in rows:
 			row_num += 1
