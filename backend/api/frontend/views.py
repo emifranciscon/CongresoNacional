@@ -138,7 +138,29 @@ def export_users_xls(request):
 		for col_num in range(len(row)):
 			ws.write(row_num, col_num, row[col_num], font_style)
 
+	# --------------------------------------------------------------------------------------
+	ws = wb.add_sheet("Para Euge")
+	row_num = 0
 
+	columns = ['Diocesis','Nombre', "Apellido", 'Primer Nombre']
+	for col_num in range(len(columns)):
+		ws.write(row_num, col_num, columns[col_num], font_style)
+
+
+	for diocesis in Diocesis.objects.all():
+		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
+		aux_data = []
+		for person in rows:
+			tup1 = (person.diocesis.nombre, person.nombre, person.apellido, person.nombre.split(" ")[0].strip())
+			aux_data.append(tup1)
+
+		for row in aux_data:
+			row_num += 1
+			for col_num in range(len(row)):
+				ws.write(row_num, col_num, row[col_num], font_style)
+	# --------------------------------------------------------------------------------------
+
+	# --------------------------------------------------------------------------------------
 	ws = wb.add_sheet("Seguro")
 	row_num = 0
 
@@ -151,7 +173,6 @@ def export_users_xls(request):
 		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk))
 		aux_data = []
 		for person in rows:
-			print("fecha_nacimiento: {0}".format(person.fecha_nacimiento))
 			tup1 = (person.diocesis.nombre, person.nombre, person.apellido, person.num_doc, str(person.fecha_nacimiento))
 			aux_data.append(tup1)
 
@@ -159,6 +180,7 @@ def export_users_xls(request):
 			row_num += 1
 			for col_num in range(len(row)):
 				ws.write(row_num, col_num, row[col_num], font_style)
+	# --------------------------------------------------------------------------------------
 
 	for diocesis in Diocesis.objects.all():
 		if diocesis.nombre == 'Villa Maria':
