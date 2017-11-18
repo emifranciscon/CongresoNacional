@@ -16,6 +16,9 @@ from weasyprint import HTML
 from django.db.models import Count
 from person.models import Person, Diocesis, Comidas, DetalleDiocesis
 # Create your views here.
+from django.db.models.functions import Cast
+from django.db.models.fields import DateField
+
 
 @login_required(login_url = "/login/")
 def home(request):
@@ -146,8 +149,9 @@ def export_users_xls(request):
 	for col_num in range(len(columns)):
 		ws.write(row_num, col_num, columns[col_num], font_style)
 
+
 	for diocesis in Diocesis.objects.all():
-		rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc','DATE(fecha_nacimiento)')
+		rows = Person.objects.annotate(date_only=Cast('fecha_nacimiento', DateField())).filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('diocesis__nombre','nombre','apellido','num_doc','fecha_nacimiento')
 
 		for row in rows:
 			row_num += 1
