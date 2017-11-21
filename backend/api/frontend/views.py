@@ -211,12 +211,12 @@ def export_users_xls(request):
 				for col_num in range(len(row)):
 					ws.write(row_num, col_num, row[col_num], font_style)
 
-			rows = persons.values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia',"descripcion_dieta",'descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision__nombre','detalle_dioc__descripcion', 'detalle_dioc__duerme_en_universidad', 'detalle_dioc__quiere_material','detalle_dioc__pk')
-			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia","descripcion_dieta", "Observaciones", "Tipo asistencia", "comision", "Descripcion diocesis villa maria",'duerme en uni?', 'quiere material?', 'id_detalle']
+			rows = persons.values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_dieta','descripcion_registro','detalle_dioc__tipo_asistencia','detalle_dioc__comision__nombre','detalle_dioc__descripcion', 'detalle_dioc__duerme_en_universidad', 'detalle_dioc__quiere_material','detalle_dioc__pk')
+			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia",'descripcion_dieta', "Observaciones", "Tipo asistencia", "comision", "Descripcion diocesis villa maria",'duerme en uni?', 'quiere material?', 'id_detalle']
 
 		else:
-			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_dieta')
-			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones", 'descripcion_dieta']
+			rows = Person.objects.filter(diocesis=Diocesis.objects.get(pk=diocesis.pk)).values_list('nombre','apellido','email_personal','talle','pago_remera','estado__nombre','descripcion_familia','descripcion_registro','descripcion_dieta')
+			columns = ['Nombre', 'Apellido', 'Email', 'Talle Remera', "Pago Remera", "Estado", "Descripcion Flia", "Observaciones",'descripcion_dieta']
 
 		if not rows:
 			continue
